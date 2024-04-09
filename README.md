@@ -1,2 +1,2 @@
 # Boitheadventure.github.io
-Server medicine
+This is server medicine GitHub by Boiadventure

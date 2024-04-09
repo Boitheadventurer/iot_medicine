@@ -1,5 +1,17 @@
 <?php
-include 'conn.php';
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "medic";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect());
+}
+
 $a = 1; // Test (Get data from INPUT FORM website)
 
 date_default_timezone_set("Asia/Bangkok");

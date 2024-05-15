@@ -257,6 +257,7 @@ void condition_CHECK() {
   int k;
   if (x == 2 && val == 0) {
     delay(1000);
+    Serial.println(k);
     k++;
     if (k == 300) {
       Serial.println("Take medicine failed!");

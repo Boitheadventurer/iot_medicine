@@ -256,9 +256,9 @@ void condition_CHECK() {
   }
   int k;
   if (x == 2 && val == 0) {
-    delay(100);
+    delay(1000);
     k++;
-    if (k == 1000) {
+    if (k == 300) {
       Serial.println("Take medicine failed!");
       status = "'failed'";
       LINE.notify("ผู้ป่วยไม่ได้รับยาในเวลาที่กำหนด!");

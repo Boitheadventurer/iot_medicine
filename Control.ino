@@ -7,9 +7,7 @@
 Servo myservo;
 
 #define sensor D5
-int val;
-int x;
-int i;
+int x, i, k, val;
 
 /*2.4G*/
 const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID

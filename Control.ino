@@ -62,8 +62,8 @@ void setup() {
   Serial.print("HTTP_GET Response Code: "); Serial.println(httpCode);
   delay(5000);
   while (httpCode != 200) {
-    Serial.print("HTTP_GET Response Code: "); Serial.println(httpCode);
-    delay(5000);
+    condition_GET();
+    delay(1000);
   }
   Serial.println(LINE.getVersion());
   LINE.setToken(LINE_TOKEN);

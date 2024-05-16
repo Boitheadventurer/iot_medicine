@@ -217,7 +217,6 @@ void tft_text() {
     tft.print(httpCode);
     tft.setTextSize(2);
     tft.setCursor(5, 138);
-    tft.print("CONNECTING");
   } else { // BF < BB < time_get
     tft.setCursor(40, 50);
     tft.print("BBF");

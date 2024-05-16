@@ -79,12 +79,12 @@ void loop() {
   }
   val = digitalRead(sensor);
   condition_GET();
-  if (bf_time == "" || lun_time == "" || dn_time == "" || bb_time == "") {
-    Serial.print("ERROR CONNECT SERVER HTTP : "); Serial.println(httpCode);
-    while (bf_time == "" || lun_time == "" || dn_time == "" || bb_time == "") {
+  if (httpCode != 200) {
+    Serial.print("HTTP_GET loop Code: "); Serial.println(httpCode);
+    while (httpCode != 200) {
       condition_GET();
     }
-    Serial.println("SERVER CONNECTED");
+    Serial.println("HTTP_GET loop Code: "); Serial.println(httpCode);
   }
   condition_CHECK();
   delay(150);

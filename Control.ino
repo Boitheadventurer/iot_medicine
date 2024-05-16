@@ -65,6 +65,7 @@ void setup() {
     condition_GET();
     delay(1000);
   }
+  Serial.print("Connect Code: "); Serial.println(httpCode);
   Serial.println(LINE.getVersion());
   LINE.setToken(LINE_TOKEN);
   LINE.notify("SETUP COMPLETE");
@@ -80,12 +81,12 @@ void loop() {
   val = digitalRead(sensor);
   condition_GET();
   if (httpCode != 200) {
-    Serial.print("HTTP_GET loop Code: "); Serial.println(httpCode);
+    Serial.print("HTTP_GET Loop Code: "); Serial.println(httpCode);
     while (httpCode != 200) {
       condition_GET();
       delay(1000);
     }
-    Serial.println("HTTP_GET loop Code: "); Serial.println(httpCode);
+    Serial.println("HTTP_GET Loop Code: "); Serial.println(httpCode);
   }
   condition_CHECK();
   delay(150);

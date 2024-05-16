@@ -257,7 +257,7 @@ void condition_CHECK() {
       medic_send[3] = bb_medic[3];
       condition_CHECK_send();
   }
-  int k;
+  
   if (x == 2 && val == 0) {
     delay(1000);
     Serial.println(k);

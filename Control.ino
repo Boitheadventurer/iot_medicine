@@ -60,8 +60,9 @@ void setup() {
   httpCode = http.GET();
   String payload = http.getString();
   Serial.print("HTTP_GET Response Code: "); Serial.println(httpCode);
-  if (httpCode != 200) {
-    connectWiFi();
+  while (httpCode != 200) {
+    Serial.print("HTTP_GET Response Code: "); Serial.println(httpCode);
+    delay(5000);
   }
   Serial.println(LINE.getVersion());
   LINE.setToken(LINE_TOKEN);

@@ -84,7 +84,7 @@ void loop() {
       condition_GET();
       delay(150);
     }
-    Serial.println("HTTP_GET Loop Code: "); Serial.println(httpCode);
+    Serial.print("HTTP_GET Loop Code: "); Serial.println(httpCode);
   }
   condition_CHECK();
   delay(150);
@@ -260,9 +260,9 @@ void condition_CHECK() {
   
   if (x == 2 && val == 0) {
     delay(1000);
-    Serial.println(k);
+    //Serial.println(k);
     k++;
-    if (k >= 60) {
+    if (k >= 300) {
       Serial.println("Take medicine failed!");
       status = "'failed'";
       LINE.notify("ผู้ป่วยไม่ได้รับยาในเวลาที่กำหนด!");

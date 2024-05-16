@@ -83,6 +83,7 @@ void loop() {
     Serial.print("HTTP_GET loop Code: "); Serial.println(httpCode);
     while (httpCode != 200) {
       condition_GET();
+      delay(1000);
     }
     Serial.println("HTTP_GET loop Code: "); Serial.println(httpCode);
   }

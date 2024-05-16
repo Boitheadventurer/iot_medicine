@@ -60,6 +60,9 @@ void setup() {
   httpCode = http.GET();
   String payload = http.getString();
   Serial.print("HTTP_GET Response Code: "); Serial.println(httpCode);
+  if (httpCode != 200) {
+    connectWiFi();
+  }
   Serial.println(LINE.getVersion());
   LINE.setToken(LINE_TOKEN);
   LINE.notify("SETUP COMPLETE");
@@ -259,7 +262,7 @@ void condition_CHECK() {
     delay(1000);
     Serial.println(k);
     k++;
-    if (k == 300) {
+    if (k >= 60) {
       Serial.println("Take medicine failed!");
       status = "'failed'";
       LINE.notify("ผู้ป่วยไม่ได้รับยาในเวลาที่กำหนด!");

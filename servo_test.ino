@@ -23,7 +23,7 @@ void loop() {
   for (int x = 0; x <= 180; x += 16) {
     myservo.write(x);
     Serial.println(x);
-    delay(5000);
+    delay(7500);
   }
   delay(1500 * 10);
   Serial.println("New loop testing");

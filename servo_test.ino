@@ -25,4 +25,6 @@ void loop() {
     Serial.println(x);
     delay(5000);
   }
+  delay(1500 * 10);
+  Serial.println("New loop testing");
 }

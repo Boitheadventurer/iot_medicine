@@ -80,9 +80,7 @@ void loop() {
   val = digitalRead(sensor);
   condition_GET();
   if (bf_time == "" || lun_time == "" || dn_time == "" || bb_time == "") {
-    Serial.println("***");
     Serial.print("ERROR CONNECT SERVER HTTP : "); Serial.println(httpCode);
-    Serial.println("***");
     while (bf_time == "" || lun_time == "" || dn_time == "" || bb_time == "") {
       condition_GET();
     }

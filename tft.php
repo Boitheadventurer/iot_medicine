@@ -6,7 +6,7 @@ date_default_timezone_set("Asia/Bangkok");
 echo "\ntime=" . date("H:i");
 
 // Foreach data tb user
-foreach($conn->query("SELECT * FROM user WHERE id = $a") as $y) {
+foreach($conn->query("SELECT * FROM `user` WHERE `id` = $a") as $y) {
     echo "\nName=" . $y['firstname'] . "\n " . $y['lastname'];
 }
 

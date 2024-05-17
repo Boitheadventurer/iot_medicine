@@ -5,10 +5,13 @@ $a = 1; // Test (Get data from INPUT FORM website)
 date_default_timezone_set("Asia/Bangkok");
 echo "\ntime=" . date("H:i:s");
 
+$UserID = ''; // Initialize UserID variable
 // SQL GET UserID
 foreach($conn->query("SELECT * FROM `user` WHERE `id` = $a") as $z) {
-    echo "\nUserID=" . $z['id'];
-    echo "\nfullname=" . $z['firstname'] . " " . $z['lastname'];
+    $UserID = $z['id'];
+    $fullname = $z['firstname'] . " " . $z['lastname'];
+    echo "\nUserID=" . $UserID;
+    echo "\nfullname=" . $fullname;
 }
 
 // SQL GET bf_time

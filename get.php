@@ -31,7 +31,7 @@ foreach($conn->query("SELECT * FROM `tb_data_bf` WHERE `id` = $a") as $z) {
     if ($bf_medic4 == "") {
         $bf_medic4 = "NULL";
     }
-    echo "\nbf_time=" . $bf_time;
+    echo "\n\nbf_time=" . $bf_time;
     echo "\nbf_medic1=" . $bf_medic1;
     echo "\nbf_medic2=" . $bf_medic2;
     echo "\nbf_medic3=" . $bf_medic3;

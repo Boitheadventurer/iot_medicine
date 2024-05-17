@@ -28,6 +28,7 @@ int httpCode;
 
 //***GET***//
 int UserID; // UserID
+String fullname; // Fname + Lname
 String time_get;
 
 // Time meal
@@ -129,10 +130,17 @@ void condition_GET() {
     String userIDString = payload.substring(index + 7);
     UserID = userIDString.toInt();
 
+  // GET fullname
+  int n = payload.indexOf("fullname=");
+    String nn = payload.substring(n + 9);
+    int substr_nn = nn.indexOf("UserID=");
+    nn = nn.substring(0, substr_nn);
+  fullname = nn;
+
   // GET RealTime from PHP
   int t = payload.indexOf("time=");
     String tt = payload.substring(t + 5);
-    int substr_tt = tt.indexOf("UserID=");
+    int substr_tt = tt.indexOf("fullname=");
     tt = tt.substring(0, substr_tt);
   time_get = tt;
   

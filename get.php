@@ -8,7 +8,6 @@ echo "\ntime=" . date("H:i:s");
 // SQL GET UserID
 foreach($conn->query("SELECT * FROM `user` WHERE `id` = $a") as $z) {
     echo "\nUserID=" . $z['id'];
-    echo "\nfullname=" . $z['firstname'] . " " . $z['lastname'];
 }
 
 // SQL GET bf_time

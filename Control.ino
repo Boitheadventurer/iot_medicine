@@ -69,9 +69,6 @@ void setup() {
   LINE.setToken(LINE_TOKEN);
   //LINE.notify("SETUP COMPLETE");
   //Serial.print("payload: ");    Serial.println(payload);
-  Serial.print("UserID is "); Serial.println(UserID);
-  Serial.print("Fullname is "); Serial.println(Fullname);
-  Serial.print("Time is "); Serial.println(time_get);
   Serial.println("----------SETUP CONTROL.INO READY--------------");
   delay(250);
 }

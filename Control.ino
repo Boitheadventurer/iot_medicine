@@ -193,7 +193,7 @@ void condition_GET() {
     String dn4_String = payload.substring(dn4 + 10);
     dn_medic[3] = dn4_String.toInt();
 
-  // GET bb_time by UserID
+  // GET bb_time
   int bb = payload.indexOf("bb_time=");
     String bb_timeString = payload.substring(bb + 8);
     int substr_bb = bb_timeString.indexOf("bb_medic");

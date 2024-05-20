@@ -17,8 +17,8 @@ const char* LINE_TOKEN = "QIChSQJdNBnK08VtgMSjRPhikDUQVGP3ikBPexwgQFU";
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
-String POSTURL = "http://192.168.10.14/Medic/post.php"; 
-String GETURL  = "http://192.168.10.14/Medic/get.php";
+String POSTURL = "http://192.168.10.21/Medic/post.php"; 
+String GETURL  = "http://192.168.10.21/Medic/get.php";
 //String POSTURL = "http://medicinectn2555.000webhostapp.com/post.php"; 
 //String GETURL  = "http://medicinectn2555.000webhostapp.com/get.php";
 
@@ -29,6 +29,7 @@ int httpCode;
 //***GET***//
 int UserID; // UserID
 String time_get;
+String Fullname;
 
 // Time meal
 String bf_time;
@@ -136,6 +137,15 @@ void condition_GET() {
     tt = tt.substring(0, substr_tt);
   time_get = tt;
   
+  /**/
+  // GET Fullname = firstname + lastname
+  int n = payload.indexOf("Fullname=");
+    String nn = payload.substring(n + 9);
+    int substr_nn = nn.indexOf("bf_time=");
+    nn = nn.substring(0, substr_nn);
+  Fullname = nn;
+  /**/
+
   // GET bf_time
   int bf = payload.indexOf("bf_time=");
     String bf_timeString = payload.substring(bf + 8);
@@ -265,16 +275,16 @@ void condition_CHECK() {
     if (k >= 300) {
       Serial.println("Take medicine failed!");
       status = "'failed'";
-      LINE.notify("ผู้ป่วยไม่ได้รับยาในเวลาที่กำหนด!");
-      LINE.notifyPicture(time_get, "https://www.shareicon.net/data/256x256/2015/09/15/101562_incorrect_512x512.png");
+      LINE.notify("ผู้ป่วย คุณ " + Fullname + " ไม่ได้รับยาในเวลาที่กำหนด!");
+      LINE.notifyPicture("ไม่สำเร็จ!", "https://www.shareicon.net/data/256x256/2015/09/15/101562_incorrect_512x512.png");
       condition_POST();
       k = 0;
     }
   } else if (x == 2 && val == 1) {
     Serial.println("Take medicine success!");
     status = "'success'";
-    LINE.notify("ผู้ป่วยได้รับยาในเวลาที่กำหนด สำเร็จ!");
-    LINE.notifyPicture(time_get, "https://cdn-icons-png.flaticon.com/512/4436/4436481.png");
+    LINE.notify("ผู้ป่วย คุณ " + Fullname + " ได้รับยาในเวลาที่กำหนด!");
+    LINE.notifyPicture("สำเร็จ!", "https://cdn-icons-png.flaticon.com/512/4436/4436481.png");
     condition_POST();
     k = 0;
   }

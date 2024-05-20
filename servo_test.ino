@@ -5,26 +5,23 @@ String Input;
 void setup() {
   Serial.begin(115200);
   myservo.attach(D4);
-  delay(150);
 }
 
 void loop() {
+  myservo.writeMicroseconds(1250);
+  delay(145);
+  myservo.writeMicroseconds(1500);
+  delay(500*10);
+
   /*
   if (Serial.available()) {
     Input = Serial.readString();
-    Serial.print("Set Servo to : "); Serial.println(Input);
+    Serial.print("Delay == "); Serial.println(Input);
     delay(150);
-    myservo.write(Input.toInt());
-    delay(3000);
-  }
-  delay(150);
-  */
 
-  for (int x = 0; x <= 180; x += 16) {
-    myservo.write(x);
-    Serial.println(x);
-    delay(7500);
-  }
-  delay(1500 * 10);
-  Serial.println("New loop testing");
+    myservo.writeMicroseconds(1250);
+    delay(Input.toInt());
+    myservo.writeMicroseconds(1500);
+    delay(2000);
+  }*/
 }

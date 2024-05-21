@@ -109,7 +109,7 @@ void connectWiFi() {
 
 // Servo rotate counter-clockwise full-speed
 void rotateservo() {
-  myservo.writeMicroseconds(1000);
+  myservo.writeMicroseconds(1250);
 }
 
 // Servo rotation stopped
@@ -229,7 +229,7 @@ void condition_CHECK_send() {
   Serial.println("Time to medicine!");
   LINE.notify("ถึงเวลาที่กำหนดจ่ายยาแล้ว!");
   rotateservo();
-  delay(40);
+  delay(147);
   stopservo();
   delay(1000);
   x++; // x == 2

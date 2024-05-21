@@ -79,6 +79,12 @@ void loop() {
   }
   val = digitalRead(sensor);
   condition_GET();
+  if (httpCode != 200) {
+    while (httpCode != 200) {
+      condition_GET();
+      delay(15);
+    }
+  }
   condition_CHECK();
   delay(150);
 }

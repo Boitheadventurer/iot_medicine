@@ -79,14 +79,6 @@ void loop() {
   }
   val = digitalRead(sensor);
   condition_GET();
-  if (httpCode != 200) {
-    Serial.print("HTTP_GET Loop Code: "); Serial.println(httpCode);
-    while (httpCode != 200) {
-      condition_GET();
-      delay(150);
-    }
-    Serial.print("HTTP_GET Loop Code: "); Serial.println(httpCode);
-  }
   condition_CHECK();
   delay(150);
 }

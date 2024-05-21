@@ -141,7 +141,7 @@ void condition_GET() {
   // GET Fullname = firstname + lastname
   int n = payload.indexOf("Fullname=");
     String nn = payload.substring(n + 9);
-    int substr_nn = nn.indexOf("bf_time=");
+    int substr_nn = nn.indexOf("cutname");
     nn = nn.substring(0, substr_nn);
   Fullname = nn;
   /**/

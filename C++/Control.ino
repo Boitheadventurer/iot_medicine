@@ -269,7 +269,7 @@ void condition_CHECK() {
   if (x == 2 && val == 0) {
     delay(1000);
     k++;
-    if (k >= 60) {
+    if (k >= 900) {
       Serial.println("Take medicine failed!");
       status = "'failed'";
       LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ไม่ได้รับยาในเวลาที่กำหนด!");

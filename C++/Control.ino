@@ -17,7 +17,7 @@ const char* LINE_TOKEN = "QIChSQJdNBnK08VtgMSjRPhikDUQVGP3ikBPexwgQFU";
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
-String POSTURL = "http://192.168.10.21/Medic/post.php"; 
+String POSTURL = "http://192.168.10.21/Medic/post.php";
 String GETURL  = "http://192.168.10.21/Medic/get.php";
 //String POSTURL = "http://medicinectn2555.000webhostapp.com/post.php"; 
 //String GETURL  = "http://medicinectn2555.000webhostapp.com/get.php";
@@ -86,7 +86,7 @@ void loop() {
     }
   }
   condition_CHECK();
-  delay(150);
+  delay(15);
 }
 
 // ConnectWiFi
@@ -268,7 +268,6 @@ void condition_CHECK() {
   
   if (x == 2 && val == 0) {
     delay(1000);
-    //Serial.println(k);
     k++;
     if (k >= 300) {
       Serial.println("Take medicine failed!");
@@ -303,11 +302,6 @@ void condition_POST() {
   Serial.print("HTTP_POST Response Code: "); Serial.println(httpCode);
   Serial.print("POSTURL : "); Serial.println(POSTURL); 
   Serial.print("Data: ");     Serial.println(postData);
-    //Serial.print("payload : "); Serial.println(payload);
-  if (httpCode == 200) {
-    //Serial.println("Send data success!");
-    Serial.println("--------------------COMPLETE----------------------");
-    delay(100);
-  }
+  //Serial.print("payload : "); Serial.println(payload);
   x++; // x == 3
 }

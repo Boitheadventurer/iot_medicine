@@ -275,7 +275,7 @@ void condition_CHECK() {
     if (k >= 300) {
       Serial.println("Take medicine failed!");
       status = "'failed'";
-      LINE.notify("ผู้ป่วย คุณ " + Fullname + " ไม่ได้รับยาในเวลาที่กำหนด!");
+      LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "\nไม่ได้รับยาในเวลาที่กำหนด!");
       LINE.notifyPicture("ไม่สำเร็จ!", "https://www.shareicon.net/data/256x256/2015/09/15/101562_incorrect_512x512.png");
       condition_POST();
       k = 0;
@@ -283,7 +283,7 @@ void condition_CHECK() {
   } else if (x == 2 && val == 1) {
     Serial.println("Take medicine success!");
     status = "'success'";
-    LINE.notify("ผู้ป่วย คุณ " + Fullname + " ได้รับยาในเวลาที่กำหนด!");
+    LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "\nได้รับยาในเวลาที่กำหนด!");
     LINE.notifyPicture("สำเร็จ!", "https://cdn-icons-png.flaticon.com/512/4436/4436481.png");
     condition_POST();
     k = 0;

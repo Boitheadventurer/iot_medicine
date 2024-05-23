@@ -303,4 +303,5 @@ void condition_POST() {
   Serial.print("Data: ");     Serial.println(postData);
   //Serial.print("payload : "); Serial.println(payload);
   x++; // x == 3
+  delay(1000 * 60);
 }

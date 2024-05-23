@@ -85,7 +85,7 @@ void loop() {
     condition_GET();
   }
   condition_CHECK();
-  delay(15);
+  delay(1000 * 10);
 }
 
 // ConnectWiFi

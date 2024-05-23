@@ -61,8 +61,9 @@ void setup() {
   Serial.print("HTTP_GET Response Code: "); Serial.println(httpCode);
   delay(5000);
   while (httpCode != 200) {
+    Serial.print(".");
     condition_GET();
-    delay(1000);
+    delay(500);
   }
   Serial.print("Connect Code: "); Serial.println(httpCode);
   Serial.println(LINE.getVersion());
@@ -79,13 +80,13 @@ void loop() {
   }
   val = digitalRead(sensor);
   condition_GET();
-  while (UserID <= 0) {
-    delay(500);
+  while (httpCode != 200) {
     Serial.print(".");
     condition_GET();
+    delay(500);
   }
   condition_CHECK();
-  delay(500);
+  delay(15);
 }
 
 // ConnectWiFi
@@ -220,6 +221,18 @@ void condition_GET() {
     bb_medic[3] = bb4_String.toInt();
 }
 
+// Condition in condition_CHECK
+void condition_CHECK_send() {
+  x = 1; // x == 1
+  Serial.println("Time to medicine!");
+  LINE.notify("ถึงเวลาที่กำหนดจ่ายยาแล้ว!");
+  rotateservo();
+  delay(147);
+  stopservo();
+  delay(1000);
+  x++; // x == 2
+}
+
 // Condition_CHECK data before POST
 void condition_CHECK() {
   // Check if it's time for any meal
@@ -252,23 +265,11 @@ void condition_CHECK() {
       medic_send[3] = bb_medic[3];
       condition_CHECK_send();
   }
-}
-
-// Condition in condition_CHECK
-void condition_CHECK_send() {
-  x = 1; // x == 1
-  Serial.println("Time to medicine!");
-  LINE.notify("ถึงเวลาที่กำหนดจ่ายยาแล้ว!");
-  rotateservo();
-  delay(147);
-  stopservo();
-  delay(500);
-  x++; // x == 2
-
+  
   if (x == 2 && val == 0) {
     delay(1000);
     k++;
-    if (k >= 300) {
+    if (k >= 900) {
       Serial.println("Take medicine failed!");
       status = "'failed'";
       LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ไม่ได้รับยาในเวลาที่กำหนด!");

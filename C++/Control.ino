@@ -74,7 +74,7 @@ void setup() {
 }
 
 void loop() {
-  if(WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) {
     connectWiFi();
   }
   val = digitalRead(sensor);

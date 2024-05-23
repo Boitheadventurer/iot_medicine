@@ -300,6 +300,8 @@ void condition_POST() {
   Serial.print("POSTURL : "); Serial.println(POSTURL); 
   Serial.print("Data: ");     Serial.println(postData);
   //Serial.print("payload : "); Serial.println(payload);
+  delay(1000 * 60 * 2);
+  condition_GET();
+  delay(150);
   x = 0;
-  delay(1000 * 60);
 }

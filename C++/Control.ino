@@ -79,7 +79,11 @@ void loop() {
   }
   val = digitalRead(sensor);
   condition_GET();
-
+  while (UserID <= 0) {
+    delay(500);
+    Serial.print(".");
+    condition_GET();
+  }
   condition_CHECK();
   delay(15);
 }

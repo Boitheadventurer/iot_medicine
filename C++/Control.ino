@@ -47,6 +47,55 @@ int medic_send[4];
 int meal; // Meal for send data_tb
 String status; // Status medicine success
 
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+#include <Servo.h>
+#include <String.h>
+#include <TridentTD_LineNotify.h>
+//#include <Wire.h>
+Servo myservo;
+
+#define sensor D5
+int x, i, k, val;
+
+/*2.4G*/
+const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
+const char* password = "ctnphrae"; // Wi-Fi password
+
+const char* LINE_TOKEN = "QIChSQJdNBnK08VtgMSjRPhikDUQVGP3ikBPexwgQFU";
+
+// URL by file PHP (http://(IP4)/(folder)(file.php))
+
+String POSTURL = "http://192.168.10.41/Medic/post.php";
+String GETURL  = "http://192.168.10.41/Medic/get.php";
+//String POSTURL = "http://medicinectn2555.000webhostapp.com/post.php"; 
+//String GETURL  = "http://medicinectn2555.000webhostapp.com/get.php";
+
+WiFiClient client;
+HTTPClient http;
+int httpCode;
+
+//***GET***//
+int UserID; // UserID
+String time_get;
+String Fullname;
+
+// Time meal
+String bf_time;
+String lun_time;
+String dn_time;
+String bb_time;
+
+//Medic take follow ID
+int bf_medic[4];
+int lun_medic[4];
+int dn_medic[4];
+int bb_medic[4];
+int medic_send[4];
+
+int meal; // Meal for send data_tb
+String status; // Status medicine success
+
 void setup() {
   Serial.begin(115200);
   pinMode(sensor, INPUT);
@@ -230,6 +279,7 @@ void condition_CHECK_send() {
   stopservo();
   delay(1000);
   x++; // x == 2
+  medic_condition();
 }
 
 // Condition_CHECK data before POST
@@ -264,7 +314,9 @@ void condition_CHECK() {
       medic_send[3] = bb_medic[3];
       condition_CHECK_send();
   }
-  
+}
+
+void medic_condition() {
   if (x == 2 && val == 0) {
     delay(1000);
     k++;

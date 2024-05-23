@@ -17,8 +17,8 @@ const char* LINE_TOKEN = "QIChSQJdNBnK08VtgMSjRPhikDUQVGP3ikBPexwgQFU";
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
-String POSTURL = "http://192.168.10.21/Medic/post.php";
-String GETURL  = "http://192.168.10.21/Medic/get.php";
+String POSTURL = "http://192.168.10.41/Medic/post.php";
+String GETURL  = "http://192.168.10.41/Medic/get.php";
 //String POSTURL = "http://medicinectn2555.000webhostapp.com/post.php"; 
 //String GETURL  = "http://medicinectn2555.000webhostapp.com/get.php";
 

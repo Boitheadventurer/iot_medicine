@@ -47,55 +47,6 @@ int medic_send[4];
 int meal; // Meal for send data_tb
 String status; // Status medicine success
 
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
-#include <Servo.h>
-#include <String.h>
-#include <TridentTD_LineNotify.h>
-//#include <Wire.h>
-Servo myservo;
-
-#define sensor D5
-int x, i, k, val;
-
-/*2.4G*/
-const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
-const char* password = "ctnphrae"; // Wi-Fi password
-
-const char* LINE_TOKEN = "QIChSQJdNBnK08VtgMSjRPhikDUQVGP3ikBPexwgQFU";
-
-// URL by file PHP (http://(IP4)/(folder)(file.php))
-
-String POSTURL = "http://192.168.10.41/Medic/post.php";
-String GETURL  = "http://192.168.10.41/Medic/get.php";
-//String POSTURL = "http://medicinectn2555.000webhostapp.com/post.php"; 
-//String GETURL  = "http://medicinectn2555.000webhostapp.com/get.php";
-
-WiFiClient client;
-HTTPClient http;
-int httpCode;
-
-//***GET***//
-int UserID; // UserID
-String time_get;
-String Fullname;
-
-// Time meal
-String bf_time;
-String lun_time;
-String dn_time;
-String bb_time;
-
-//Medic take follow ID
-int bf_medic[4];
-int lun_medic[4];
-int dn_medic[4];
-int bb_medic[4];
-int medic_send[4];
-
-int meal; // Meal for send data_tb
-String status; // Status medicine success
-
 void setup() {
   Serial.begin(115200);
   pinMode(sensor, INPUT);
@@ -269,44 +220,31 @@ void condition_GET() {
     bb_medic[3] = bb4_String.toInt();
 }
 
-// Condition in condition_CHECK
-void condition_CHECK_send() {
-  x = 1; // x == 1
-  Serial.println("Time to medicine!");
-  LINE.notify("ถึงเวลาที่กำหนดจ่ายยาแล้ว!");
-  rotateservo();
-  delay(147);
-  stopservo();
-  delay(1000);
-  x++; // x == 2
-  medic_condition();
-}
-
 // Condition_CHECK data before POST
 void condition_CHECK() {
   // Check if it's time for any meal
-  if (time_get == bf_time || x == 1) {
+  if (time_get == bf_time) {
       meal = 1;
       medic_send[0] = bf_medic[0];
       medic_send[1] = bf_medic[1];
       medic_send[2] = bf_medic[2];
       medic_send[3] = bf_medic[3];
       condition_CHECK_send();
-  } else if (time_get == lun_time || x == 1) {
+  } else if (time_get == lun_time) {
       meal = 2;
       medic_send[0] = lun_medic[0];
       medic_send[1] = lun_medic[1];
       medic_send[2] = lun_medic[2];
       medic_send[3] = lun_medic[3];
       condition_CHECK_send();
-  } else if (time_get == dn_time || x == 1) {
+  } else if (time_get == dn_time) {
       meal = 3;
       medic_send[0] = dn_medic[0];
       medic_send[1] = dn_medic[1];
       medic_send[2] = dn_medic[2];
       medic_send[3] = dn_medic[3];
       condition_CHECK_send();
-  } else if (time_get == bb_time || x == 1) {
+  } else if (time_get == bb_time) {
       meal = 4;
       medic_send[0] = bb_medic[0];
       medic_send[1] = bb_medic[1];
@@ -316,7 +254,17 @@ void condition_CHECK() {
   }
 }
 
-void medic_condition() {
+// Condition in condition_CHECK
+void condition_CHECK_send() {
+  x = 1; // x == 1
+  Serial.println("Time to medicine!");
+  LINE.notify("ถึงเวลาที่กำหนดจ่ายยาแล้ว!");
+  rotateservo();
+  delay(147);
+  stopservo();
+  delay(500);
+  x++; // x == 2
+
   if (x == 2 && val == 0) {
     delay(1000);
     k++;

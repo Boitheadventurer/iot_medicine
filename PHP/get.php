@@ -3,7 +3,7 @@ include 'conn.php';
 $a = 1; // Test (Get data from INPUT FORM website)
 
 date_default_timezone_set("Asia/Bangkok");
-echo "\ntime=" . date("H:i:s");
+echo "\ntime=" . date("H:i");
 
 // SQL GET UserID
 foreach($conn->query("SELECT * FROM `user` WHERE `id` = $a") as $z) {
@@ -13,7 +13,7 @@ foreach($conn->query("SELECT * FROM `user` WHERE `id` = $a") as $z) {
 
 // SQL GET bf_time
 foreach($conn->query("SELECT * FROM `tb_data_bf` WHERE `id` = $a") as $z) {
-    $bf_time = $z['time_bf'];
+    $bf_time = substr($z['time_bf'], 0, 5);
     $bf_medic1 = $z['medicine_id'];
     if ($bf_medic1 == "") {
         $bf_medic1 = "NULL";
@@ -39,7 +39,7 @@ foreach($conn->query("SELECT * FROM `tb_data_bf` WHERE `id` = $a") as $z) {
 
 // SQL GET lun_time
 foreach($conn->query("SELECT * FROM `tb_data_lunch` WHERE `id` = $a") as $z) {
-    $lun_time = $z['time_lunch'];
+    $lun_time = substr($z['time_lunch'], 0, 5);
     $lun_medic1 = $z['medicine_id'];
     if ($lun_medic1 == "") {
         $lun_medic1 = "NULL";
@@ -65,7 +65,7 @@ foreach($conn->query("SELECT * FROM `tb_data_lunch` WHERE `id` = $a") as $z) {
 
 // SQL GET dn_time
 foreach($conn->query("SELECT * FROM `tb_data_dn` WHERE `id` = $a") as $z) {
-    $dn_time = $z['time_dn'];
+    $dn_time = substr($z['time_dn'], 0, 5);
     $dn_medic1 = $z['medicine_id'];
     if ($dn_medic1 == "") {
         $dn_medic1 = "NULL";
@@ -91,7 +91,7 @@ foreach($conn->query("SELECT * FROM `tb_data_dn` WHERE `id` = $a") as $z) {
 
 // SQL GET bb_time
 foreach($conn->query("SELECT * FROM `tb_data_bb` WHERE `id` = $a") as $z) {
-    $bb_time = $z['time_bb'];
+    $bb_time = substr($z['time_bb'], 0, 5);
     $bb_medic1 = $z['medicine_id'];
     if ($bb_medic1 == "") {
         $bb_medic1 = "NULL";

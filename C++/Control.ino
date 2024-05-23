@@ -10,15 +10,15 @@ Servo myservo;
 int x, i, k, val;
 
 /*2.4G*/
-const char* ssid = "SSID"; // Wi-Fi SSID
-const char* password = "PASSWORD"; // Wi-Fi password
+const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
+const char* password = "ctnphrae"; // Wi-Fi password
 
-const char* LINE_TOKEN = "TOKEN";
+const char* LINE_TOKEN = "QIChSQJdNBnK08VtgMSjRPhikDUQVGP3ikBPexwgQFU";
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
-String POSTURL = "http://IP4/Medic/post.php";
-String GETURL  = "http://IP4/Medic/get.php";
+String POSTURL = "http://192.168.10.41/Medic/post.php";
+String GETURL  = "http://192.168.10.41/Medic/get.php";
 //String POSTURL = "http://medicinectn2555.000webhostapp.com/post.php"; 
 //String GETURL  = "http://medicinectn2555.000webhostapp.com/get.php";
 
@@ -85,7 +85,7 @@ void loop() {
     condition_GET();
   }
   condition_CHECK();
-  delay(1000 * 10);
+  delay(500);
 }
 
 // ConnectWiFi
@@ -268,7 +268,7 @@ void condition_CHECK() {
   if (x == 2 && val == 0) {
     delay(1000);
     k++;
-    if (k >= 600) {
+    if (k >= 300) {
       Serial.println("Take medicine failed!");
       status = "'failed'";
       LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ไม่ได้รับยาในเวลาที่กำหนด!");

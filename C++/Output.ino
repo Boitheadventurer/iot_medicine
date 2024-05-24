@@ -31,11 +31,13 @@ String time_get;
 int warn;
 
 String Name;
-String Clect;
 String BF;
 String LUN;
 String DN;
 String BB;
+
+String Clect;
+String txt_meal;
 
 int st_bf;
 int st_lun;
@@ -84,6 +86,7 @@ void loop() {
     condition_GET_tft();
     delay(50);
   }
+  condition_GET_tft();
   layout();
   tft_text();
 
@@ -234,48 +237,46 @@ void tft_text() {
   tft.setCursor(47, 125);
   tft.print("Status");
 
-  tft.setTextSize(3);
-  tft.setTextColor(ST77XX_GREEN);
-
-  if (time_get <= BF && st_bf == 1 || time_get >= BF && st_bf == 1 && st_bb == 0) {
-    tft.setCursor(40, 50);
-    tft.print("BBF");
-    tft.setCursor(20, 85);
-    tft.print(BF);
+  if (time_get <= BF && st_bf == 1 || 
+  time_get >= BF && st_bf == 1 && st_bb == 0) {
+    Clect = "BBF";
+    txt_meal = BF;
     if (time_get == BF) {
       txt_stt_medic();
     }
-  } else if (time_get <= LUN && st_lun == 1 || time_get >= LUN && st_lun == 1 && st_bf == 0) {
-    tft.setCursor(40, 50);
-    tft.print("LUN");
-    tft.setCursor(20, 85);
-    tft.print(LUN);
+  } else if (time_get <= LUN && st_lun == 1 || 
+  time_get >= LUN && st_lun == 1 && st_bf == 0) {
+    Clect = "LUN";
+    txt_meal = LUN;
     if (time_get == LUN) {
       txt_stt_medic();
     }
-  } else if (time_get <= DN && st_dn == 1 || time_get >= DN && st_dn == 1 && st_lun == 0) {
-    tft.setCursor(40, 50);
-    tft.print("DNR");
-    tft.setCursor(20, 85);
-    tft.print(DN);
+  } else if (time_get <= DN && st_dn == 1 || 
+  time_get >= DN && st_dn == 1 && st_lun == 0) {
+    Clect = "DNR";
+    txt_meal = DN;
     if (time_get == DN) {
       txt_stt_medic();
     }
-  } else if (time_get <= BB && st_bb == 1 || time_get >= BB && st_bb == 1 && st_dn == 0) {
-    tft.setCursor(40, 50);
-    tft.print("BED");
-    tft.setCursor(20, 85);
-    tft.print(BB);
+  } else if (time_get <= BB && st_bb == 1 || 
+  time_get >= BB && st_bb == 1 && st_dn == 0) {
+    Clect = "BED";
+    txt_meal = BB;
     if (time_get == BB) {
       txt_stt_medic();
     }
   } else { // BF < BB < time_get
-    tft.setCursor(40, 50);
-    tft.print("BBF");
-    tft.setCursor(20, 85);
-    tft.print(BF);
+    Clect = "BBF";
+    txt_meal = BF;
     if (time_get == BF) {
       txt_stt_medic();
     }
   }
+
+  tft.setTextSize(3);
+  tft.setTextColor(ST77XX_GREEN);
+  tft.setCursor(40, 50);
+  tft.print(Clect);
+  tft.setCursor(20, 85);
+  tft.print(txt_meal);
 }

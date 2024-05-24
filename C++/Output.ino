@@ -142,9 +142,8 @@ void setting() {
         tft.fillScreen(ST77XX_BLACK);
         delay(150);
         loop();
-      } else if (key) {
-        
       }
+      
     }
     delay(50);
   }

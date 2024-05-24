@@ -31,6 +31,7 @@ String time_get;
 int warn;
 
 String Name;
+String Clect;
 String BF;
 String LUN;
 String DN;
@@ -40,6 +41,7 @@ int st_bf;
 int st_lun;
 int st_dn;
 int st_bb;
+char key;
 
 #define I2CADDR 0x21
 
@@ -79,21 +81,47 @@ void loop() {
     connectWiFi();
   }
   while (BF == "" || LUN == "" || DN == "" || BB == "") {
-    delay(150);
     condition_GET_tft();
+    delay(50);
   }
   layout();
   tft_text();
 
   for (int h; h <= 200; h++) {
-    char key = keypad.getKey();
-    if (key) {
-      Serial.println(key);
+    key = keypad.getKey();
+    switch (key) {
+      case 'A' : Clect = "BBF";
+        setting(); break;
+      case 'B' : Clect = "LUN";
+        setting(); break;
+      case 'C' : Clect = "DNR";
+        setting(); break;
+      case 'D' : Clect = "BED";
+        setting(); break;
     }
     delay(50);
   }
-  
+
   tft.fillScreen(ST77XX_BLACK);
+}
+
+// Active with A button => Setting Database
+void setting() {
+  tft.fillScreen(ST77XX_BLACK);
+  delay(150);
+  layout();
+
+  tft.setTextColor(ST77XX_YELLOW);
+  tft.setTextSize(1);
+  tft.setCursor(15, 30);
+  tft.print("Setting " + Clect + " to..");
+  tft.setCursor(47, 125);
+  tft.print("Status");
+  tft.setTextColor(ST77XX_GREEN);
+  tft.setTextSize(2);
+  tft.setCursor(20, 138);
+  tft.print("Setting!");
+  delay(5000);
 }
 
 //ConnectWiFi
@@ -190,7 +218,7 @@ void layout() {
 void txt_stt_medic() {
   tft.setTextColor(ST77XX_GREEN);
   tft.setTextSize(2);
-  tft.setCursor(12, 138);
+  tft.setCursor(13, 138);
   tft.print("Medicine!");
   delay(1000 * 10);
 }

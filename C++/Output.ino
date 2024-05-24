@@ -130,18 +130,21 @@ void setting() {
 
   tft.setTextColor(ST77XX_YELLOW);
   tft.setTextSize(1);
-  tft.setCursor(15, 30);
+  tft.setCursor(15, 9);
   tft.print("Setting " + Clect + " to..");
+  tft.setCursor(31, 35);
+  tft.print("HH");
+  tft.setCursor(85, 35);
+  tft.print("MM");
   tft.setCursor(47, 125);
   tft.print("Status");
-
   tft.setTextColor(ST77XX_GREEN);
   tft.setTextSize(2);
   tft.setCursor(20, 138);
   tft.print("Setting!");
-
   tft.setTextSize(3);
-  tft.setCursor(20, 60);
+  tft.setCursor(20, 60); // location print key
+
   for (int h; h <= 400; h++) { // 20 sec for setting
     key = keypad.getKey();
     if (key) {
@@ -151,9 +154,17 @@ void setting() {
         delay(150);
         loop();
       }
-
     }
     delay(50);
+  }
+  while (BF == "" || LUN == "" || DN == "" || BB == "" ||
+  httpCode != 200 || Name == "") {
+    tft.setCursor(17, 65);
+    tft.setTextSize(2);
+    tft.setTextColor(ST77XX_WHITE);
+    tft.print("Database");
+    condition_GET_tft();
+    delay(150);
   }
 }
 

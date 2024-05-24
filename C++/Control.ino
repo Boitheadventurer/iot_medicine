@@ -10,8 +10,8 @@ Servo myservo;
 int x, i, k, val;
 
 /*2.4G*/
-const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
-const char* password = "ctnphrae"; // Wi-Fi password
+const char* ssid = "SSID"; // Wi-Fi SSID
+const char* password = "PASSWORD"; // Wi-Fi password
 
 const char* LINE_TOKEN = "QIChSQJdNBnK08VtgMSjRPhikDUQVGP3ikBPexwgQFU";
 

@@ -7,12 +7,12 @@
 #include <Wire.h>
 
 /*2.4G*/
-const char* ssid = "SSID"; // Wi-Fi SSID
-const char* password = "PASSWORD"; // Wi-Fi password
+const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
+const char* password = "ctnphrae"; // Wi-Fi password
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
-String GETURL = "http://IP4/Medic/tft.php";
+String GETURL = "http://192.168.10.41/Medic/tft.php";
 //String GETURL = "http://medicinectn2555.000webhostapp.com/tft.php";
 
 WiFiClient client;
@@ -120,11 +120,24 @@ void setting() {
   tft.print("Setting " + Clect + " to..");
   tft.setCursor(47, 125);
   tft.print("Status");
+
   tft.setTextColor(ST77XX_GREEN);
   tft.setTextSize(2);
   tft.setCursor(20, 138);
   tft.print("Setting!");
-  delay(5000);
+
+  tft.setTextSize(3);
+  tft.setCursor(20, 60);
+  for (int h; h <= 400; h++) {
+    key = keypad.getKey();
+    if (key) {
+      tft.print(key);
+      if (key == '#') {
+        setup();
+      }
+    }
+    delay(50);
+  }
 }
 
 //ConnectWiFi

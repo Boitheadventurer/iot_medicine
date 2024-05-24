@@ -103,7 +103,7 @@ void loop() {
   layout();
   tft_text();
 
-  for (int h; h <= 200; h++) {
+  for (int h = 0; h <= 400; h++) {
     key = keypad.getKey();
     switch (key) {
       case 'A' : Clect = "BBF";
@@ -145,7 +145,7 @@ void setting() {
   tft.setTextSize(3);
   tft.setCursor(20, 60); // location print key
 
-  for (int h; h <= 400; h++) { // 20 sec for setting
+  for (int h = 0; h <= 400; h++) { // 20 sec for setting
     key = keypad.getKey();
     if (key) {
       tft.print(key);
@@ -154,17 +154,9 @@ void setting() {
         delay(150);
         loop();
       }
+      /**/
     }
     delay(50);
-  }
-  while (BF == "" || LUN == "" || DN == "" || BB == "" ||
-  httpCode != 200 || Name == "") {
-    tft.setCursor(17, 65);
-    tft.setTextSize(2);
-    tft.setTextColor(ST77XX_WHITE);
-    tft.print("Database");
-    condition_GET_tft();
-    delay(150);
   }
 }
 

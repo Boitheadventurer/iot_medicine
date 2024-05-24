@@ -2,6 +2,9 @@
 #include <Adafruit_ST7735.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
+#include <Keypad_I2C.h>
+#include <Keypad.h>
+#include <Wire.h>
 
 /*2.4G*/
 const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
@@ -38,8 +41,27 @@ int st_lun;
 int st_dn;
 int st_bb;
 
+#define I2CADDR 0x21
+
+const byte ROWS = 4;
+const byte COLS = 4;
+
+char keys[ROWS][COLS] = {
+  {'D','C','B','A'},
+  {'#','9','6','3'},
+  {'0','8','5','2'},
+  {'*','7','4','1'}
+};
+
+byte rowPins[ROWS] = {0, 1, 2, 3};
+byte colPins[COLS] = {4, 5, 6, 7};
+
+Keypad_I2C keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS, I2CADDR, PCF8574 );
+
 void setup() {
   Serial.begin(115200);
+  Wire.begin();
+  keypad.begin( makeKeymap(keys) );
   tft.initR(INITR_BLACKTAB);
   tft.fillScreen(ST77XX_BLACK);
   connectWiFi();
@@ -53,14 +75,24 @@ void setup() {
 }
 
 void loop() {
-  if(WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) {
     connectWiFi();
   }
-  condition_GET_tft();
+  while (BF == "" || LUN == "" || DN == "" || BB == "") {
+    delay(150);
+    condition_GET_tft();
+  }
   layout();
   tft_text();
 
-  delay(1000 * 10);
+  for (int h; h <= 100; h++) {
+    char key = keypad.getKey();
+    if (key) {
+      Serial.println(key);
+    }
+    delay(150);
+  }
+  
   tft.fillScreen(ST77XX_BLACK);
 }
 
@@ -209,15 +241,7 @@ void tft_text() {
     if (time_get == BB) {
       txt_stt_medic();
     }
-  } else if(BF == "" || LUN == "" || DN == "" || BB == "") {
-    tft.setTextColor(ST77XX_RED);
-    tft.setCursor(40, 50);
-    tft.print("ERR");
-    tft.setCursor(40, 85);
-    tft.print(httpCode);
-    tft.setTextSize(2);
-    tft.setCursor(5, 138);
-  } else { // BF < BB < time_get
+  }else { // BF < BB < time_get
     tft.setCursor(40, 50);
     tft.print("BBF");
     tft.setCursor(20, 85);

@@ -13,7 +13,7 @@ int x, i, k, val;
 const char* ssid = "SSID"; // Wi-Fi SSID
 const char* password = "PASSWORD"; // Wi-Fi password
 
-const char* LINE_TOKEN = "QIChSQJdNBnK08VtgMSjRPhikDUQVGP3ikBPexwgQFU";
+const char* LINE_TOKEN = "LINE_TOKEN";
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 

@@ -269,7 +269,7 @@ void tft_text() {
     if (time_get == BB) {
       txt_stt_medic();
     }
-  }else { // BF < BB < time_get
+  } else { // BF < BB < time_get
     tft.setCursor(40, 50);
     tft.print("BBF");
     tft.setCursor(20, 85);

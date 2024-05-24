@@ -30,6 +30,7 @@ Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 String time_get;
 int warn;
 
+int UserID;
 String Name;
 String BF;
 String LUN;
@@ -73,18 +74,22 @@ void setup() {
   httpCode = http.GET();
   String payload = http.getString();
   Serial.print("HTTP Response Code: "); Serial.println(httpCode);
-    //Serial.print("payload: ");           Serial.println(payload);
+  //Serial.print("payload: ");          Serial.println(payload);
   Serial.println("------------SETUP OUTPUT.INO READY-----------");
   tft.fillScreen(ST77XX_BLACK);
 }
 
 void loop() {
   while (WiFi.status() != WL_CONNECTED) {
+    Serial.print("-");
     connectWiFi();
+    delay(150);
   }
-  while (BF == "" || LUN == "" || DN == "" || BB == "") {
+  while (BF == "" || LUN == "" || DN == "" || BB == "" ||
+  httpCode != 200 || Name == "") {
+    Serial.print("=");
     condition_GET_tft();
-    delay(50);
+    delay(150);
   }
   condition_GET_tft();
   layout();
@@ -101,6 +106,7 @@ void loop() {
         setting(); break;
       case 'D' : Clect = "BED";
         setting(); break;
+      case '#' : ESP.restart(); break; // Press '#' button for restart
     }
     delay(50);
   }
@@ -128,12 +134,16 @@ void setting() {
 
   tft.setTextSize(3);
   tft.setCursor(20, 60);
-  for (int h; h <= 400; h++) {
+  for (int h; h <= 400; h++) { // 20 sec for setting
     key = keypad.getKey();
     if (key) {
       tft.print(key);
-      if (key == '#') {
-        setup();
+      if (key == 'A' || key == 'B' || key == 'C' || key == 'D' || key == '#') { // Cancel setting
+        tft.fillScreen(ST77XX_BLACK);
+        delay(150);
+        loop();
+      } else if (key) {
+        
       }
     }
     delay(50);
@@ -166,6 +176,11 @@ void condition_GET_tft() {
   http.begin(client, GETURL);
   int httpCode = http.GET();
   String payload = http.getString();
+
+  // UserID
+  int index = payload.indexOf("UserID=");
+  String userIDString = payload.substring(index + 7);
+  UserID = userIDString.toInt();
 
   // Time
   int t = payload.indexOf("time=");
@@ -220,7 +235,7 @@ void condition_GET_tft() {
   BB = extractedbb;
 }
 
-// Design layout
+//Design layout
 void layout() {
   tft.drawFastHLine(0, 0, tft.width(), ST7735_WHITE);
   tft.drawFastVLine(0, 0, tft.height(), ST7735_WHITE);
@@ -230,7 +245,7 @@ void layout() {
   tft.drawFastHLine(1, 159, tft.width(), ST7735_WHITE);
 }
 
-// Text alert medicine
+//Text alert medicine
 void txt_stt_medic() {
   tft.setTextColor(ST77XX_GREEN);
   tft.setTextSize(2);

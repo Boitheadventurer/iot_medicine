@@ -81,16 +81,24 @@ void setup() {
 
 void loop() {
   while (WiFi.status() != WL_CONNECTED) {
-    Serial.print("-");
+    tft.setCursor(35, 65);
+    tft.setTextSize(2);
+    tft.setTextColor(ST77XX_WHITE);
+    tft.print("WiFi");
     connectWiFi();
     delay(150);
   }
   while (BF == "" || LUN == "" || DN == "" || BB == "" ||
   httpCode != 200 || Name == "") {
-    Serial.print("=");
+    tft.setCursor(17, 65);
+    tft.setTextSize(2);
+    tft.setTextColor(ST77XX_WHITE);
+    tft.print("Database");
     condition_GET_tft();
     delay(150);
   }
+  tft.fillScreen(ST77XX_BLACK);
+  delay(150);
   condition_GET_tft();
   layout();
   tft_text();
@@ -143,7 +151,7 @@ void setting() {
         delay(150);
         loop();
       }
-      
+
     }
     delay(50);
   }
@@ -159,10 +167,10 @@ void connectWiFi() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
-    tft.setCursor(5, 65);
+    tft.setCursor(36, 65);
     tft.setTextSize(2);
     tft.setTextColor(ST77XX_WHITE);
-    tft.print("Connecting");
+    tft.print("SETUP");
   }
   Serial.print("connected to : "); Serial.println(ssid);
   Serial.print("IP address: "); Serial.println(WiFi.localIP());

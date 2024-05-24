@@ -158,6 +158,7 @@ void setting() {
     }
     delay(50);
   }
+  loop();
 }
 
 //ConnectWiFi

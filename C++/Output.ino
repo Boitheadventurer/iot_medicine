@@ -85,12 +85,12 @@ void loop() {
   layout();
   tft_text();
 
-  for (int h; h <= 100; h++) {
+  for (int h; h <= 200; h++) {
     char key = keypad.getKey();
     if (key) {
       Serial.println(key);
     }
-    delay(150);
+    delay(50);
   }
   
   tft.fillScreen(ST77XX_BLACK);

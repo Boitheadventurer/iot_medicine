@@ -158,7 +158,7 @@ void setting() {
       }
       if (key == '*') {
         delay(150);
-        key_get += key;
+        key_get = key;
         Serial.println(key_get);
         loop();
       }

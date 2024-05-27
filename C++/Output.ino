@@ -106,7 +106,7 @@ void loop() {
     } else {
       tft.setTextColor(ST77XX_GREEN);
       tft.setTextSize(2);
-      tft.setCursor(22, 138);
+      tft.setCursor(30, 138);
       tft.print("Ready!");
     }
     delay(50);
@@ -264,7 +264,7 @@ void condition_POST_upd() {
     tft.setTextColor(ST77XX_GREEN);
     tft.print("SUCCESS!");
   } else {
-    tft.setCursor(12, 65);
+    tft.setCursor(7, 65);
     tft.setTextSize(2);
     tft.setTextColor(ST77XX_GREEN);
     tft.print("TRY AGAIN!");

@@ -7,13 +7,13 @@
 #include <Wire.h>
 
 /*2.4G*/
-const char* ssid = "SSID"; // Wi-Fi SSID
-const char* password = "PASSWORD"; // Wi-Fi password
+const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
+const char* password = "ctnphrae"; // Wi-Fi password
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
-String GETURL = "http://IP4/Medic/tft.php";
-String UPDURL = "http://IP4/Medic/upd.php";
+String GETURL = "http://192.168.10.41/Medic/tft.php";
+String UPDURL = "http://192.168.10.41/Medic/upd.php";
 //String GETURL = "http://medicinectn2555.000webhostapp.com/tft.php";
 
 WiFiClient client;
@@ -40,6 +40,7 @@ String BB;
 
 String Clect;
 String txt_meal;
+const char* key_get;
 
 int st_bf;
 int st_lun;
@@ -155,13 +156,17 @@ void setting() {
         delay(150);
         loop();
       }
-      /**/
+      if (key == '*') {
+        delay(150);
+        key_get += key;
+        Serial.println(key_get);
+        loop();
+      }
     }
     delay(50);
   }
   loop();
 }
-
 //ConnectWiFi
 void connectWiFi() {
   WiFi.mode(WIFI_OFF);
@@ -246,6 +251,28 @@ void condition_GET_tft() {
   String extractedbb = payload.substring(bb + 3);
   BB = extractedbb;
 }
+
+//Condition POST update time bf, lunch, dn, bed
+/*
+void condition_POST_upd() {
+  String postData = "UserID=" + String(UserID) + "&meal=" + String(meal) + 
+  "&medic_send1=" + String(medic_send[0]) + "&medic_send2=" + String(medic_send[1]) + 
+  "&medic_send3=" + String(medic_send[2]) + "&medic_send4=" + String(medic_send[3]) + 
+  "&status=" + String(status);
+  WiFiClient client;
+  HTTPClient http;
+  http.begin(client, UPDURL);
+  http.addHeader("Content-Type", "application/x-www-form-urlencoded"); // ***Send data
+  int httpCode = http.POST(postData);
+  String payload = http.getString();
+  Serial.print("HTTP_UPD Response Code: "); Serial.println(httpCode);
+  Serial.print("UPDURL : "); Serial.println(UPDURL); 
+  Serial.print("Data: ");     Serial.println(postData);
+  //Serial.print("payload : "); Serial.println(payload);
+  delay(2500);
+  loop();
+}
+*/
 
 //Design layout
 void layout() {

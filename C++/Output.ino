@@ -86,9 +86,9 @@ void loop() {
   }
   tft.fillScreen(ST77XX_BLACK);
   layout();
+  condition_GET_tft();
+  tft_text();
   for (int h = 0; h <= 400; h++) {
-    condition_GET_tft();
-    tft_text();
     key = keypad.getKey();
     switch (key) {
       case 'A' : Clect = "BBF";

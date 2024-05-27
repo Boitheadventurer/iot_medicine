@@ -156,7 +156,10 @@ void setting() {
         tft.print(":");
       }
       if (key == '*' && key_get.length() >= 5) { // Check send UPD time
-        Serial.println(key_get);
+        Serial.println(UserID);   //Check data send
+        Serial.println(Clect);    //Check data send
+        Serial.println(key_get);  //Check data send
+        condition_POST_upd();
         key_get = ""; // Clear key_get
         loop();
       }
@@ -256,26 +259,20 @@ void condition_GET_tft() {
 }
 
 //Condition POST update time bf, lunch, dn, bed
-/*
 void condition_POST_upd() {
-  String postData = "UserID=" + String(UserID) + "&meal=" + String(meal) + 
-  "&medic_send1=" + String(medic_send[0]) + "&medic_send2=" + String(medic_send[1]) + 
-  "&medic_send3=" + String(medic_send[2]) + "&medic_send4=" + String(medic_send[3]) + 
-  "&status=" + String(status);
+  String updateData = "UserID=" + String(UserID) + "&Clect=" + String(Clect) + "&key_get=" + String(key_get);
   WiFiClient client;
   HTTPClient http;
   http.begin(client, UPDURL);
   http.addHeader("Content-Type", "application/x-www-form-urlencoded"); // ***Send data
-  int httpCode = http.POST(postData);
+  int httpCode = http.POST(updateData);
   String payload = http.getString();
   Serial.print("HTTP_UPD Response Code: "); Serial.println(httpCode);
   Serial.print("UPDURL : "); Serial.println(UPDURL); 
-  Serial.print("Data: ");     Serial.println(postData);
+  Serial.print("Data: ");     Serial.println(updateData);
   //Serial.print("payload : "); Serial.println(payload);
-  delay(2500);
   loop();
 }
-*/
 
 //Design layout
 void layout() {

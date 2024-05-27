@@ -82,8 +82,10 @@ void setup() {
 }
 
 void loop() {
+  while (WiFi.status() != WL_CONNECTED) {
+    connectWiFi();
+  }
   tft.fillScreen(ST77XX_BLACK);
-  connectWiFi();
   condition_GET_tft();
   layout();
   tft_text();
@@ -151,6 +153,7 @@ void setting() {
   }
   loop();
 }
+
 //ConnectWiFi
 void connectWiFi() {
   WiFi.mode(WIFI_OFF);
@@ -168,6 +171,7 @@ void connectWiFi() {
   }
   Serial.print("connected to : "); Serial.println(ssid);
   Serial.print("IP address: "); Serial.println(WiFi.localIP());
+  tft.fillScreen(ST77XX_BLACK);
 }
 
 //Condition GET tft and meal

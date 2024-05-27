@@ -267,8 +267,13 @@ void condition_POST_upd() {
   Serial.print("UPDURL : "); Serial.println(UPDURL); 
   Serial.print("Data: ");     Serial.println(updateData);
   //Serial.print("payload : "); Serial.println(payload);              //Check data send
+  tft.setCursor(17, 65);
+  tft.setTextSize(2);
+  tft.setTextColor(ST77XX_GREEN);
+  tft.print("SUCCESS!");
   delay(1500);
   key_get = ""; // Clear key_get
+  tft.fillScreen(ST77XX_BLACK);
   loop();
 }
 

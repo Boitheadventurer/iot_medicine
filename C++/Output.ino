@@ -262,6 +262,7 @@ void condition_POST_upd() {
     tft.setTextColor(ST77XX_GREEN);
     tft.print("TRY AGAIN!");
   }
+  condition_GET_tft();
   delay(1500);
   key_get = ""; // Clear key_get
   tft.fillScreen(ST77XX_BLACK);

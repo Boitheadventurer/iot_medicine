@@ -84,11 +84,11 @@ void loop() {
   while (WiFi.status() != WL_CONNECTED) {
     connectWiFi();
   }
+  tft.fillScreen(ST77XX_BLACK);
+  condition_GET_tft();
+  layout();
+  tft_text();
   for (int h = 0; h <= 400; h++) {
-    tft.fillScreen(ST77XX_BLACK);
-    condition_GET_tft();
-    layout();
-    tft_text();
     key = keypad.getKey();
     switch (key) {
       case 'A' : Clect = "BBF";

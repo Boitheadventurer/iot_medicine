@@ -88,7 +88,7 @@ void loop() {
     tft.setTextColor(ST77XX_WHITE);
     tft.print("WiFi");
     connectWiFi();
-    delay(150);
+    delay(15);
   }
   while (BF == "" || LUN == "" || DN == "" || BB == "" ||
   httpCode != 200 || Name == "") {
@@ -97,7 +97,7 @@ void loop() {
     tft.setTextColor(ST77XX_WHITE);
     tft.print("Database");
     condition_GET_tft();
-    delay(150);
+    delay(15);
   }
   tft.fillScreen(ST77XX_BLACK);
   delay(150);
@@ -300,7 +300,6 @@ void txt_stt_medic() {
   tft.setTextSize(2);
   tft.setCursor(13, 138);
   tft.print("Medicine!");
-  delay(1000 * 10);
 }
 
 //TFT text from database

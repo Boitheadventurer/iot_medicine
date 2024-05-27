@@ -278,17 +278,6 @@ void layout() {
   tft.drawFastHLine(1, 159, tft.width(), ST7735_WHITE);
 }
 
-//Text alert medicine
-void txt_stt_medic() {
-  Serial.println("Hello world");
-  tft.setTextColor(ST77XX_GREEN);
-  tft.setTextSize(2);
-  tft.setCursor(13, 138);
-  tft.print("Medicine!");
-  delay(1000 * 15);
-  loop();
-}
-
 //TFT text from database
 void tft_text() {
   tft.setTextSize(1);
@@ -304,65 +293,27 @@ void tft_text() {
   time_get >= BF && st_bf == 1 && st_bb == 0) {
     Clect = "BBF";
     txt_meal = BF;
-    tft.setTextSize(3);
-    tft.setTextColor(ST77XX_GREEN);
-    tft.setCursor(40, 50);
-    tft.print(Clect);
-    tft.setCursor(20, 85);
-    tft.print(txt_meal);
-    if (time_get == BF) {
-      txt_stt_medic();
-    }
   } else if (time_get <= LUN && st_lun == 1 || 
   time_get >= LUN && st_lun == 1 && st_bf == 0) {
     Clect = "LUN";
     txt_meal = LUN;
-    tft.setTextSize(3);
-    tft.setTextColor(ST77XX_GREEN);
-    tft.setCursor(40, 50);
-    tft.print(Clect);
-    tft.setCursor(20, 85);
-    tft.print(txt_meal);
-    if (time_get == LUN) {
-      txt_stt_medic();
-    }
   } else if (time_get <= DN && st_dn == 1 || 
   time_get >= DN && st_dn == 1 && st_lun == 0) {
     Clect = "DNR";
     txt_meal = DN;
-    tft.setTextSize(3);
-    tft.setTextColor(ST77XX_GREEN);
-    tft.setCursor(40, 50);
-    tft.print(Clect);
-    tft.setCursor(20, 85);
-    tft.print(txt_meal);
-    if (time_get == DN) {
-      txt_stt_medic();
-    }
   } else if (time_get <= BB && st_bb == 1 || 
   time_get >= BB && st_bb == 1 && st_dn == 0) {
     Clect = "BED";
     txt_meal = BB;
-    tft.setTextSize(3);
-    tft.setTextColor(ST77XX_GREEN);
-    tft.setCursor(40, 50);
-    tft.print(Clect);
-    tft.setCursor(20, 85);
-    tft.print(txt_meal);
-    if (time_get == BB) {
-      txt_stt_medic();
-    }
   } else { // BF < BB < time_get
     Clect = "BBF";
     txt_meal = BF;
-    tft.setTextSize(3);
-    tft.setTextColor(ST77XX_GREEN);
-    tft.setCursor(40, 50);
-    tft.print(Clect);
-    tft.setCursor(20, 85);
-    tft.print(txt_meal);
-    if (time_get == BF) {
-      txt_stt_medic();
-    }
   }
+
+  tft.setTextSize(3);
+  tft.setTextColor(ST77XX_GREEN);
+  tft.setCursor(40, 50);
+  tft.print(Clect);
+  tft.setCursor(20, 85);
+  tft.print(txt_meal);
 }

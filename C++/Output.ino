@@ -13,6 +13,7 @@ const char* password = "PASSWORD"; // Wi-Fi password
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
 String GETURL = "http://IP4/Medic/tft.php";
+String UPDURL = "http://IP4/Medic/upd.php";
 //String GETURL = "http://medicinectn2555.000webhostapp.com/tft.php";
 
 WiFiClient client;

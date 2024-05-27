@@ -40,6 +40,7 @@ String BB;
 
 String Clect;
 String txt_meal;
+String key_get;
 
 int st_bf;
 int st_lun;
@@ -150,13 +151,18 @@ void setting() {
     key = keypad.getKey();
     if (key) {
       tft.print(key);
+      key_get += key;
+      if (key_get.length() == 2) { // Check HH:MM
+        tft.print(":");
+      }
       if (key == 'A' || key == 'B' || key == 'C' || key == 'D' || key == '#') { // Cancel setting
         tft.fillScreen(ST77XX_BLACK);
         delay(150);
         loop();
       }
-      if (key == '*') {
-        delay(150);
+      if (key == '*') { // Check send UPD time
+        Serial.println(key_get);
+        key_get = "";
         loop();
       }
     }

@@ -40,7 +40,7 @@ String BB;
 
 String Clect;
 String txt_meal;
-const char* key_get;
+char* key_get;
 
 int st_bf;
 int st_lun;

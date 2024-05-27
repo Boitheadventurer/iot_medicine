@@ -78,7 +78,6 @@ void setup() {
   Serial.print("HTTP Response Code: "); Serial.println(httpCode);
   //Serial.print("payload: ");          Serial.println(payload);
   Serial.println("------------SETUP OUTPUT.INO READY-----------");
-  tft.fillScreen(ST77XX_BLACK);
 }
 
 void loop() {

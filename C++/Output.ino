@@ -156,12 +156,7 @@ void setting() {
         tft.print(":");
       }
       if (key == '*' && key_get.length() >= 5) { // Check send UPD time
-        Serial.println(UserID);   //Check data send
-        Serial.println(Clect);    //Check data send
-        Serial.println(key_get);  //Check data send
         condition_POST_upd();
-        key_get = ""; // Clear key_get
-        loop();
       }
       if (key == 'A' || key == 'B' || key == 'C' || key == 'D' || key == '#' || key_get.length() >= 5) { // Cancel setting
         tft.fillScreen(ST77XX_BLACK);
@@ -272,6 +267,7 @@ void condition_POST_upd() {
   Serial.print("Data: ");     Serial.println(updateData);
   Serial.print("payload : "); Serial.println(payload);              //Check data send
   delay(1500);
+  key_get = ""; // Clear key_get
   loop();
 }
 

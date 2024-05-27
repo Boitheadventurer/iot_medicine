@@ -84,11 +84,13 @@ void loop() {
   while (WiFi.status() != WL_CONNECTED) {
     connectWiFi();
   }
+  while (UserID <= 0) {
+    condition_GET_tft();
+  }
   tft.fillScreen(ST77XX_BLACK);
   layout();
-  condition_GET_tft();
   tft_text();
-  for (int h = 0; h <= 400; h++) {
+  for (int h = 0; h <= 200; h++) {
     key = keypad.getKey();
     switch (key) {
       case 'A' : Clect = "BBF";
@@ -103,11 +105,6 @@ void loop() {
     }
     if (time_get == BF || time_get == LUN || time_get == DN || time_get == BB) {
       txt_stt_medic();
-    } else {
-      tft.setTextColor(ST77XX_GREEN);
-      tft.setTextSize(2);
-      tft.setCursor(30, 138);
-      tft.print("Ready!");
     }
     delay(50);
   }

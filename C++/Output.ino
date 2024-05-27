@@ -40,7 +40,6 @@ String BB;
 
 String Clect;
 String txt_meal;
-char* key_get;
 
 int st_bf;
 int st_lun;
@@ -158,8 +157,6 @@ void setting() {
       }
       if (key == '*') {
         delay(150);
-        key_get = key;
-        Serial.println(key_get);
         loop();
       }
     }

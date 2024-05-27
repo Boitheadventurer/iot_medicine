@@ -101,7 +101,14 @@ void loop() {
         setting(); break;
       case '#' : ESP.restart(); break; // Press '#' button for restart
     }
-    txt_stt_medic();
+    if (time_get == BF || time_get == LUN || time_get == DN || time_get == BB) {
+      txt_stt_medic(); break;
+    } else {
+      tft.setTextColor(ST77XX_GREEN);
+      tft.setTextSize(2);
+      tft.setCursor(22, 138);
+      tft.print("Ready!");
+    }
     delay(50);
   }
 }

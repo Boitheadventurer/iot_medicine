@@ -87,8 +87,8 @@ void loop() {
   tft.fillScreen(ST77XX_BLACK);
   condition_GET_tft();
   layout();
-  tft_text();
   for (int h = 0; h <= 400; h++) {
+    tft_text();
     key = keypad.getKey();
     switch (key) {
       case 'A' : Clect = "BBF";
@@ -103,7 +103,6 @@ void loop() {
     }
     delay(50);
   }
-  tft.fillScreen(ST77XX_BLACK);
 }
 
 // Active with A button => Setting Database
@@ -285,6 +284,8 @@ void txt_stt_medic() {
   tft.setTextSize(2);
   tft.setCursor(13, 138);
   tft.print("Medicine!");
+  delay(1000 * 15);
+  loop();
 }
 
 //TFT text from database

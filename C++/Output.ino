@@ -155,14 +155,14 @@ void setting() {
       if (key_get.length() == 2) { // Check HH:MM
         tft.print(":");
       }
-      if (key == 'A' || key == 'B' || key == 'C' || key == 'D' || key == '#') { // Cancel setting
-        tft.fillScreen(ST77XX_BLACK);
-        delay(150);
+      if (key == '*' && key_get.length() >= 5) { // Check send UPD time
+        Serial.println(key_get);
+        key_get = ""; // Clear key_get
         loop();
       }
-      if (key == '*') { // Check send UPD time
-        Serial.println(key_get);
-        key_get = "";
+      if (key == 'A' || key == 'B' || key == 'C' || key == 'D' || key == '#' || key_get.length() >= 5) { // Cancel setting
+        tft.fillScreen(ST77XX_BLACK);
+        key_get = ""; // Clear key_get
         loop();
       }
     }

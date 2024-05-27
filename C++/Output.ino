@@ -296,6 +296,12 @@ void tft_text() {
   tft.print("Next medicine is");
   tft.setCursor(47, 125);
   tft.print("Status");
+  tft.setTextSize(3);
+  tft.setTextColor(ST77XX_GREEN);
+  tft.setCursor(40, 50);
+  tft.print(Clect);
+  tft.setCursor(20, 85);
+  tft.print(txt_meal);
 
   if (time_get <= BF && st_bf == 1 || 
   time_get >= BF && st_bf == 1 && st_bb == 0) {
@@ -332,11 +338,4 @@ void tft_text() {
       txt_stt_medic();
     }
   }
-
-  tft.setTextSize(3);
-  tft.setTextColor(ST77XX_GREEN);
-  tft.setCursor(40, 50);
-  tft.print(Clect);
-  tft.setCursor(20, 85);
-  tft.print(txt_meal);
 }

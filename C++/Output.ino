@@ -102,7 +102,7 @@ void loop() {
       case '#' : ESP.restart(); break; // Press '#' button for restart
     }
     if (time_get == BF || time_get == LUN || time_get == DN || time_get == BB) {
-      txt_stt_medic(); break;
+      txt_stt_medic();
     } else {
       tft.setTextColor(ST77XX_GREEN);
       tft.setTextSize(2);

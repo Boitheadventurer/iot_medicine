@@ -270,7 +270,8 @@ void condition_POST_upd() {
   Serial.print("HTTP_UPD Response Code: "); Serial.println(httpCode);
   Serial.print("UPDURL : "); Serial.println(UPDURL); 
   Serial.print("Data: ");     Serial.println(updateData);
-  //Serial.print("payload : "); Serial.println(payload);
+  Serial.print("payload : "); Serial.println(payload);              //Check data send
+  delay(1500);
   loop();
 }
 

@@ -1,23 +1,19 @@
 <?php
 include 'conn.php';
 
-// SQL UPDATE data
-//$ud = "SELECT SUM(count_medicine) FROM tb_data_eat_medicine WHERE medicine_id = $a";
-//echo $ud;
-
 // Get values from ESP8266
 if (isset($_POST["UserID"]) && isset($_POST["meal"]) &&
     isset($_POST["medic_send1"]) && isset($_POST["medic_send2"]) &&
     isset($_POST["medic_send3"]) && isset($_POST["medic_send4"]) &&
     isset($_POST["status"]) ) {
 
-    $id = $_POST["UserID"];                 // UserID
-    $meal = $_POST["meal"];                 // Meal for send data_tb
+    $id     = $_POST["UserID"];                 // UserID
+    $meal   = $_POST["meal"];                 // Meal for send data_tb
     $medic1 = $_POST["medic_send1"];
     $medic2 = $_POST["medic_send2"];
     $medic3 = $_POST["medic_send3"];
     $medic4 = $_POST["medic_send4"];
-    $stt = $_POST["status"];                // Status take medicine
+    $stt    = $_POST["status"];                // Status take medicine
 
     if ($medic1 == 0) {
         $medic1 = "NULL";
@@ -60,8 +56,8 @@ if (isset($_POST["UserID"]) && isset($_POST["meal"]) &&
     // Show response
     if (mysqli_query($conn, $sql)) { 
         echo "\nUserID = " . $id . 
-        "\nMeal = " . $select . 
-        "\nStatus = " . $stt;
+            "\nMeal = " . $select . 
+            "\nStatus = " . $stt;
     } else { 
         echo "\nError: " . $sql . "<br>" . mysqli_error($conn); 
     }

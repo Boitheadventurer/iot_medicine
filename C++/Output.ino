@@ -82,25 +82,8 @@ void setup() {
 }
 
 void loop() {
-  while (WiFi.status() != WL_CONNECTED) {
-    tft.setCursor(35, 65);
-    tft.setTextSize(2);
-    tft.setTextColor(ST77XX_WHITE);
-    tft.print("WiFi");
-    connectWiFi();
-    delay(15);
-  }
-  while (BF == "" || LUN == "" || DN == "" || BB == "" ||
-  httpCode != 200 || Name == "") {
-    tft.setCursor(17, 65);
-    tft.setTextSize(2);
-    tft.setTextColor(ST77XX_WHITE);
-    tft.print("Database");
-    condition_GET_tft();
-    delay(15);
-  }
   tft.fillScreen(ST77XX_BLACK);
-  delay(150);
+  connectWiFi();
   condition_GET_tft();
   layout();
   tft_text();

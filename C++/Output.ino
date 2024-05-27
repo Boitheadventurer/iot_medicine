@@ -85,9 +85,9 @@ void loop() {
     connectWiFi();
   }
   tft.fillScreen(ST77XX_BLACK);
-  condition_GET_tft();
   layout();
   for (int h = 0; h <= 400; h++) {
+    condition_GET_tft();
     tft_text();
     key = keypad.getKey();
     switch (key) {
@@ -280,6 +280,7 @@ void layout() {
 
 //Text alert medicine
 void txt_stt_medic() {
+  Serial.println("Hello world");
   tft.setTextColor(ST77XX_GREEN);
   tft.setTextSize(2);
   tft.setCursor(13, 138);

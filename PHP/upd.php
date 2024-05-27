@@ -32,7 +32,7 @@ if (isset($_POST["UserID"]) && isset($_POST["Clect"]) && isset($_POST["key_get"]
         $ttin   = "Err";
     }
 
-    echo "$id " . " $select " . " $tt " . " $ttin " . " $key_get";      //Check data send
+    //echo "$id " . " $select " . " $tt " . " $ttin " . " $key_get";      //Check data send
 
     $sql = "UPDATE $select SET $tt = '$key_get' WHERE $select.$ttin = $id";
 

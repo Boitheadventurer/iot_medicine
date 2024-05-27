@@ -88,8 +88,12 @@ void loop() {
     condition_GET_tft();
   }
   tft.fillScreen(ST77XX_BLACK);
+  condition_GET_tft();
   layout();
   tft_text();
+  if (time_get == BF || time_get == LUN || time_get == DN || time_get == BB) {
+    txt_stt_medic();
+  }
   for (int h = 0; h <= 200; h++) {
     key = keypad.getKey();
     switch (key) {
@@ -102,9 +106,6 @@ void loop() {
       case 'D' : Clect = "BED";
         setting(); break;
       case '#' : ESP.restart(); break; // Press '#' button for restart
-    }
-    if (time_get == BF || time_get == LUN || time_get == DN || time_get == BB) {
-      txt_stt_medic();
     }
     delay(50);
   }

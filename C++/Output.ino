@@ -255,6 +255,7 @@ void condition_GET_tft() {
 
 //Condition POST update time bf, lunch, dn, bed
 void condition_POST_upd() {
+  tft.fillScreen(ST77XX_BLACK);
   String updateData = "UserID=" + String(UserID) + "&Clect=" + String(Clect) + "&key_get=" + String(key_get);
   WiFiClient client;
   HTTPClient http;

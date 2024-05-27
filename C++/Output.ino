@@ -101,6 +101,7 @@ void loop() {
         setting(); break;
       case '#' : ESP.restart(); break; // Press '#' button for restart
     }
+    txt_stt_medic();
     delay(50);
   }
 }
@@ -276,6 +277,15 @@ void layout() {
   tft.drawFastHLine(1, 25, tft.width(), ST7735_WHITE); 
   tft.drawFastHLine(1, 120, tft.width(), ST7735_WHITE);
   tft.drawFastHLine(1, 159, tft.width(), ST7735_WHITE);
+}
+
+//Text alert medicine
+void txt_stt_medic() {
+  tft.setTextColor(ST77XX_GREEN);
+  tft.setTextSize(2);
+  tft.setCursor(13, 138);
+  tft.print("Medicine!");
+  delay(1000 * 15);
 }
 
 //TFT text from database

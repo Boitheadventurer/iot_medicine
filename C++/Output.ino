@@ -297,17 +297,17 @@ void tft_text() {
   tft.print("Next medicine is");
   tft.setCursor(47, 125);
   tft.print("Status");
-  tft.setTextSize(3);
-  tft.setTextColor(ST77XX_GREEN);
-  tft.setCursor(40, 50);
-  tft.print(Clect);
-  tft.setCursor(20, 85);
-  tft.print(txt_meal);
 
   if (time_get <= BF && st_bf == 1 || 
   time_get >= BF && st_bf == 1 && st_bb == 0) {
     Clect = "BBF";
     txt_meal = BF;
+    tft.setTextSize(3);
+    tft.setTextColor(ST77XX_GREEN);
+    tft.setCursor(40, 50);
+    tft.print(Clect);
+    tft.setCursor(20, 85);
+    tft.print(txt_meal);
     if (time_get == BF) {
       txt_stt_medic();
     }
@@ -315,6 +315,12 @@ void tft_text() {
   time_get >= LUN && st_lun == 1 && st_bf == 0) {
     Clect = "LUN";
     txt_meal = LUN;
+    tft.setTextSize(3);
+    tft.setTextColor(ST77XX_GREEN);
+    tft.setCursor(40, 50);
+    tft.print(Clect);
+    tft.setCursor(20, 85);
+    tft.print(txt_meal);
     if (time_get == LUN) {
       txt_stt_medic();
     }
@@ -322,6 +328,12 @@ void tft_text() {
   time_get >= DN && st_dn == 1 && st_lun == 0) {
     Clect = "DNR";
     txt_meal = DN;
+    tft.setTextSize(3);
+    tft.setTextColor(ST77XX_GREEN);
+    tft.setCursor(40, 50);
+    tft.print(Clect);
+    tft.setCursor(20, 85);
+    tft.print(txt_meal);
     if (time_get == DN) {
       txt_stt_medic();
     }
@@ -329,12 +341,24 @@ void tft_text() {
   time_get >= BB && st_bb == 1 && st_dn == 0) {
     Clect = "BED";
     txt_meal = BB;
+    tft.setTextSize(3);
+    tft.setTextColor(ST77XX_GREEN);
+    tft.setCursor(40, 50);
+    tft.print(Clect);
+    tft.setCursor(20, 85);
+    tft.print(txt_meal);
     if (time_get == BB) {
       txt_stt_medic();
     }
   } else { // BF < BB < time_get
     Clect = "BBF";
     txt_meal = BF;
+    tft.setTextSize(3);
+    tft.setTextColor(ST77XX_GREEN);
+    tft.setCursor(40, 50);
+    tft.print(Clect);
+    tft.setCursor(20, 85);
+    tft.print(txt_meal);
     if (time_get == BF) {
       txt_stt_medic();
     }

@@ -17,10 +17,8 @@ const char* LINE_TOKEN = "LINE_TOKEN";
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
-String POSTURL = "http://192.168.10.41/Medic/post.php";
-String GETURL  = "http://192.168.10.41/Medic/get.php";
-//String POSTURL = "http://medicinectn2555.000webhostapp.com/post.php"; 
-//String GETURL  = "http://medicinectn2555.000webhostapp.com/get.php";
+String POSTURL = "http://medicine5iot.000webhostapp.com/post.php";
+String GETURL  = "http://medicine5iot.000webhostapp.com/get.php";
 
 WiFiClient client;
 HTTPClient http;
@@ -69,7 +67,7 @@ void setup() {
   Serial.println(LINE.getVersion());
   LINE.setToken(LINE_TOKEN);
   LINE.notify("SETUP COMPLETE");
-  //Serial.print("payload: ");    Serial.println(payload);
+  Serial.print("payload: ");    Serial.println(payload);
   Serial.println("----------SETUP CONTROL.INO READY--------------");
   delay(250);
 }
@@ -299,7 +297,7 @@ void condition_POST() {
   Serial.print("HTTP_POST Response Code: "); Serial.println(httpCode);
   Serial.print("POSTURL : "); Serial.println(POSTURL); 
   Serial.print("Data: ");     Serial.println(postData);
-  //Serial.print("payload : "); Serial.println(payload);
+  Serial.print("payload : "); Serial.println(payload);
   delay(1000 * 60 * 2);
   condition_GET();
   delay(150);

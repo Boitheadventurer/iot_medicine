@@ -12,9 +12,11 @@ const char* password = "ctnphrae"; // Wi-Fi password
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
-String GETURL = "http://192.168.10.41/Medic/tft.php";
-String UPDURL = "http://192.168.10.41/Medic/upd.php";
-//String GETURL = "http://medicinectn2555.000webhostapp.com/tft.php";
+String GETURL = "http://medicine5iot.000webhostapp.com/tft.php";
+String UPDURL = "http://medicine5iot.000webhostapp.com/upd.php";
+
+//String GETURL = "http://medicineiot.wuaze.com/PHP/tft.php";
+//String UPDURL = "http://medicineiot.wuaze.com/PHP/upd.php";
 
 WiFiClient client;
 HTTPClient http;
@@ -76,16 +78,20 @@ void setup() {
   httpCode = http.GET();
   String payload = http.getString();
   Serial.print("HTTP Response Code: "); Serial.println(httpCode);
-  //Serial.print("payload: ");          Serial.println(payload);
+  Serial.print("payload: ");          Serial.println(payload);
   Serial.println("------------SETUP OUTPUT.INO READY-----------");
 }
 
 void loop() {
   while (WiFi.status() != WL_CONNECTED) {
     connectWiFi();
+    Serial.print("-");
+    delay(500);
   }
   while (UserID <= 0) {
     condition_GET_tft();
+    Serial.print("=");
+    delay(500);
   }
   tft.fillScreen(ST77XX_BLACK);
   condition_GET_tft();
@@ -255,7 +261,7 @@ void condition_POST_upd() {
   Serial.print("HTTP_UPD Response Code: "); Serial.println(httpCode);
   Serial.print("UPDURL : "); Serial.println(UPDURL); 
   Serial.print("Data: ");     Serial.println(updateData);
-  //Serial.print("payload : "); Serial.println(payload);              //Check data send
+  Serial.print("payload : "); Serial.println(payload);              //Check data send
   if (httpCode == 200) {
     tft.setCursor(17, 65);
     tft.setTextSize(2);

@@ -290,15 +290,6 @@ void layout() {
   tft.drawFastHLine(1, 159, tft.width(), ST7735_WHITE);
 }
 
-//Text alert medicine
-void txt_stt_medic() {
-  tft.setTextColor(ST77XX_YELLOW);
-  tft.setTextSize(2);
-  tft.setCursor(13, 138);
-  tft.print("Database!");
-  delay(1000 * 15);
-}
-
 //TFT text from database
 void tft_text() {
   tft.setTextSize(1);
@@ -309,6 +300,7 @@ void tft_text() {
   tft.print("Next medicine is");
   tft.setCursor(47, 125);
   tft.print("Status");
+  tft.setTextColor(ST77XX_GREEN);
 
   if (time_get <= BF && st_bf == 1 || 
   time_get >= BF && st_bf == 1 && st_bb == 0) {
@@ -327,12 +319,15 @@ void tft_text() {
     Clect = "BED";
     txt_meal = BB;
   } else { // BF < BB < time_get
+    if (UserID <= 0) {
+      tft.setTextColor(ST77XX_YELLOW);
+      Clect = "CON";
+    }
     Clect = "BBF";
     txt_meal = BF;
   }
 
   tft.setTextSize(3);
-  tft.setTextColor(ST77XX_GREEN);
   tft.setCursor(40, 50);
   tft.print(Clect);
   tft.setCursor(20, 85);

@@ -295,7 +295,7 @@ void txt_stt_medic() {
   tft.setTextColor(ST77XX_GREEN);
   tft.setTextSize(2);
   tft.setCursor(13, 138);
-  tft.print("Medicine!");
+  tft.print("Database!");
   delay(1000 * 15);
 }
 

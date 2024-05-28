@@ -20,9 +20,6 @@ const char* LINE_TOKEN = "LINE_TOKEN";
 String POSTURL = "http://medicine5iot.000webhostapp.com/post.php";
 String GETURL  = "http://medicine5iot.000webhostapp.com/get.php";
 
-//String POSTURL = "http://192.168.10.41/Medic/post.php";
-//String GETURL  = "http://192.168.10.41/Medic/get.php";
-
 WiFiClient client;
 HTTPClient http;
 int httpCode;

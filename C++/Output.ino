@@ -319,7 +319,7 @@ void tft_text() {
     Clect = "BED";
     txt_meal = BB;
   } else { // BF < BB < time_get
-    if (UserID <= 0) {
+    if (UserID <= 0 || httpCode != 200) {
       tft.setTextColor(ST77XX_YELLOW);
       Clect = "CON";
     }

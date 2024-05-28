@@ -20,6 +20,9 @@ const char* LINE_TOKEN = "LINE_TOKEN";
 String POSTURL = "http://medicine5iot.000webhostapp.com/post.php";
 String GETURL  = "http://medicine5iot.000webhostapp.com/get.php";
 
+//String POSTURL = "http://192.168.10.41/Medic/post.php";
+//String GETURL  = "http://192.168.10.41/Medic/get.php";
+
 WiFiClient client;
 HTTPClient http;
 int httpCode;
@@ -73,18 +76,20 @@ void setup() {
 }
 
 void loop() {
-  while (WiFi.status() != WL_CONNECTED) {
-    connectWiFi();
-  }
   val = digitalRead(sensor);
-  condition_GET();
-  while (httpCode != 200) {
-    Serial.print(".");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print("-");
+    connectWiFi();
+    delay(500);
+  }
+  while (UserID <= 0) {
+    Serial.print("=");
     condition_GET();
     delay(500);
   }
+  condition_GET();
   condition_CHECK();
-  delay(1000);
+  delay(500);
 }
 
 // ConnectWiFi

@@ -7,8 +7,8 @@
 #include <Wire.h>
 
 /*2.4G*/
-const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
-const char* password = "ctnphrae"; // Wi-Fi password
+const char* ssid = "SSID"; // Wi-Fi SSID
+const char* password = "PASSWORD"; // Wi-Fi password
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 

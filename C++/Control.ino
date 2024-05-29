@@ -83,7 +83,6 @@ void loop() {
     condition_GET();
     delay(500);
   }
-  val = digitalRead(sensor);
   condition_GET();
   condition_CHECK();
   delay(1000 * 10);
@@ -268,11 +267,20 @@ void condition_CHECK_send() {
 
 // Condition grap after time_get == time_meal
 void condition_grap() {
-  while (x == 1 && val == 0) {
-    Serial.println(k);
+  while (x == 1) {
     delay(1000);
     k++;
-    if (k >= 900) {
+    val = digitalRead(sensor);
+    Serial.println(k);
+    Serial.println(val);
+    if (x == 1 && val == 1) {
+      Serial.println("Take medicine success!");
+      status = "'success'";
+      LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ได้รับยาในเวลาที่กำหนด!");
+      LINE.notifyPicture("สำเร็จ!", "https://cdn-icons-png.flaticon.com/512/4436/4436481.png");
+      condition_POST();
+      k = 0;
+    } else if (k >= 900) {
       Serial.println("Take medicine failed!");
       status = "'failed'";
       LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ไม่ได้รับยาในเวลาที่กำหนด!");
@@ -280,13 +288,6 @@ void condition_grap() {
       condition_POST();
       k = 0;
     }
-  } if (x == 1 && val == 1) {
-    Serial.println("Take medicine success!");
-    status = "'success'";
-    LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ได้รับยาในเวลาที่กำหนด!");
-    LINE.notifyPicture("สำเร็จ!", "https://cdn-icons-png.flaticon.com/512/4436/4436481.png");
-    condition_POST();
-    k = 0;
   }
 }
 

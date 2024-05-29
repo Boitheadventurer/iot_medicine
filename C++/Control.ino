@@ -226,28 +226,28 @@ void condition_GET() {
 
 // Condition_CHECK data before POST ***
 void condition_CHECK() {
-  if (time_get == bf_time && UserID != 0 && httpCode == 200) {
+  if (time_get == bf_time && x == 0 && UserID != 0 && httpCode == 200) {
       meal = 1;
       medic_send[0] = bf_medic[0];
       medic_send[1] = bf_medic[1];
       medic_send[2] = bf_medic[2];
       medic_send[3] = bf_medic[3];
       condition_CHECK_send();
-  } else if (time_get == lun_time && UserID != 0 && httpCode == 200) {
+  } else if (time_get == lun_time && x == 0 && UserID != 0 && httpCode == 200) {
       meal = 2;
       medic_send[0] = lun_medic[0];
       medic_send[1] = lun_medic[1];
       medic_send[2] = lun_medic[2];
       medic_send[3] = lun_medic[3];
       condition_CHECK_send();
-  } else if (time_get == dn_time && UserID != 0 && httpCode == 200) {
+  } else if (time_get == dn_time && x == 0 && UserID != 0 && httpCode == 200) {
       meal = 3;
       medic_send[0] = dn_medic[0];
       medic_send[1] = dn_medic[1];
       medic_send[2] = dn_medic[2];
       medic_send[3] = dn_medic[3];
       condition_CHECK_send();
-  } else if (time_get == bb_time && UserID != 0 && httpCode == 200) {
+  } else if (time_get == bb_time && x == 0 && UserID != 0 && httpCode == 200) {
       meal = 4;
       medic_send[0] = bb_medic[0];
       medic_send[1] = bb_medic[1];

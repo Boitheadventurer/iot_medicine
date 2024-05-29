@@ -274,7 +274,7 @@ void condition_grap() {
   if (x == 1 && val == 0) {
     delay(1000);
     k++;
-    if (k >= 900) {
+    if (k >= 60) {
       Serial.println("Take medicine failed!");
       status = "'failed'";
       LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ไม่ได้รับยาในเวลาที่กำหนด!");

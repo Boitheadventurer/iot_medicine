@@ -10,10 +10,10 @@ Servo myservo;
 int x, i, k, val;
 
 /*2.4G*/
-const char* ssid = "SSID"; // Wi-Fi SSID
-const char* password = "PASSWORD"; // Wi-Fi password
+const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
+const char* password = "ctnphrae"; // Wi-Fi password
 
-const char* LINE_TOKEN = "LINE_TOKEN";
+const char* LINE_TOKEN = "QIChSQJdNBnK08VtgMSjRPhikDUQVGP3ikBPexwgQFU";
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
@@ -76,18 +76,17 @@ void setup() {
 }
 
 void loop() {
-  val = digitalRead(sensor);
-  condition_GET();
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print("-");
     connectWiFi();
     delay(500);
   }
-  while (UserID <= 0) {
+  while (UserID <= 0 || httpCode != 200) {
     Serial.print("=");
     condition_GET();
     delay(500);
   }
+  val = digitalRead(sensor);
   condition_GET();
   condition_CHECK();
   delay(1000 * 10);
@@ -225,28 +224,8 @@ void condition_GET() {
     bb_medic[3] = bb4_String.toInt();
 }
 
-// Condition_CHECK data before POST
+// Condition_CHECK data before POST ***
 void condition_CHECK() {
-  if (x == 1 && val == 0) {
-    delay(1000);
-    k++;
-    if (k >= 900) {
-      Serial.println("Take medicine failed!");
-      status = "'failed'";
-      LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ไม่ได้รับยาในเวลาที่กำหนด!");
-      LINE.notifyPicture("ไม่สำเร็จ!", "https://www.shareicon.net/data/256x256/2015/09/15/101562_incorrect_512x512.png");
-      condition_POST();
-      k = 0;
-    }
-  } else if (x == 1 && val == 1) {
-    Serial.println("Take medicine success!");
-    status = "'success'";
-    LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ได้รับยาในเวลาที่กำหนด!");
-    LINE.notifyPicture("สำเร็จ!", "https://cdn-icons-png.flaticon.com/512/4436/4436481.png");
-    condition_POST();
-    k = 0;
-  }
-
   if (time_get == bf_time && x == 0) {
       meal = 1;
       medic_send[0] = bf_medic[0];
@@ -275,14 +254,12 @@ void condition_CHECK() {
       medic_send[2] = bb_medic[2];
       medic_send[3] = bb_medic[3];
       condition_CHECK_send();
-  } else {
-    loop();
   }
 }
 
 // Condition in condition_CHECK
 void condition_CHECK_send() {
-  Serial.println(time_get);
+  Serial.println("CONDITION CHECK SEND");
   Serial.println("Time to medicine!");
   LINE.notify("ถึงเวลาที่กำหนดจ่ายยาแล้ว!");
   rotateservo();
@@ -290,6 +267,31 @@ void condition_CHECK_send() {
   stopservo();
   delay(1000);
   x = 1;
+  condition_grap();
+}
+
+// Condition grap after time_get == time_meal
+void condition_grap() {
+  Serial.print("CONDITION GRAP");
+  if (x == 1 && val == 0) {
+    delay(1000);
+    k++;
+    if (k >= 900) {
+      Serial.println("Take medicine failed!");
+      status = "'failed'";
+      LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ไม่ได้รับยาในเวลาที่กำหนด!");
+      LINE.notifyPicture("ไม่สำเร็จ!", "https://www.shareicon.net/data/256x256/2015/09/15/101562_incorrect_512x512.png");
+      condition_POST();
+      k = 0;
+    }
+  } else if (x == 1 && val == 1) {
+    Serial.println("Take medicine success!");
+    status = "'success'";
+    LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ได้รับยาในเวลาที่กำหนด!");
+    LINE.notifyPicture("สำเร็จ!", "https://cdn-icons-png.flaticon.com/512/4436/4436481.png");
+    condition_POST();
+    k = 0;
+  }
 }
 
 // Condition_POST after condition_CHECK
@@ -310,6 +312,7 @@ void condition_POST() {
   Serial.print("payload : "); Serial.println(payload);
   delay(1000 * 60 * 2);
   condition_GET();
-  delay(150);
   x = 0;
+  delay(150);
+  loop();
 }

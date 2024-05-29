@@ -318,14 +318,14 @@ void tft_text() {
   time_get >= BB && st_bb == 1 && st_dn == 0) {
     Clect = "BED";
     txt_meal = BB;
-  } else { // BF < BB < time_get
-    if (UserID <= 0 || httpCode != 200 || BF == "") {
-      tft.setTextColor(ST77XX_YELLOW);
-      Clect = "CON";
-    }
+  } else if (UserID <= 0 || httpCode != 200 || txt_meal == "") { // Err database
+    Clect = "CON";
+  } 
+  else { // BF < BB < time_get
     Clect = "BBF";
     txt_meal = BF;
   }
+
 
   tft.setTextSize(3);
   tft.setCursor(40, 50);

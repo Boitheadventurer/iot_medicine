@@ -10,18 +10,15 @@ Servo myservo;
 int x, i, k, val;
 
 /*2.4G*/
-const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
-const char* password = "ctnphrae"; // Wi-Fi password
+const char* ssid = "SSID"; // Wi-Fi SSID
+const char* password = "PASSWORD"; // Wi-Fi password
 
-const char* LINE_TOKEN = "QIChSQJdNBnK08VtgMSjRPhikDUQVGP3ikBPexwgQFU";
+const char* LINE_TOKEN = "LINE_TOKEN";
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
 String POSTURL = "http://medicine5iot.000webhostapp.com/post.php";
 String GETURL  = "http://medicine5iot.000webhostapp.com/get.php";
-
-//String POSTURL = "http://192.168.10.41/Medic/post.php";
-//String GETURL  = "http://192.168.10.41/Medic/get.php";
 
 WiFiClient client;
 HTTPClient http;

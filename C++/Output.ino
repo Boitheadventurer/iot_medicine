@@ -320,6 +320,7 @@ void tft_text() {
     txt_meal = BB;
   } else if (UserID <= 0 || httpCode != 200 || txt_meal == "") { // Err database
     Clect = "CON";
+    txt_meal = "";
   } 
   else { // BF < BB < time_get
     Clect = "BBF";

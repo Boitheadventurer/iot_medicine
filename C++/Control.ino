@@ -271,7 +271,7 @@ void condition_CHECK_send() {
 
 // Condition grap after time_get == time_meal
 void condition_grap() {
-  if (x == 1 && val == 0) {
+  while (x == 1 && val == 0) {
     Serial.println(k);
     delay(1000);
     k++;
@@ -283,7 +283,7 @@ void condition_grap() {
       condition_POST();
       k = 0;
     }
-  } else if (x == 1 && val == 1) {
+  } if (x == 1 && val == 1) {
     Serial.println("Take medicine success!");
     status = "'success'";
     LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ได้รับยาในเวลาที่กำหนด!");

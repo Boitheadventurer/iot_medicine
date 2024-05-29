@@ -20,6 +20,9 @@ const char* LINE_TOKEN = "LINE_TOKEN";
 String POSTURL = "http://medicine5iot.000webhostapp.com/post.php";
 String GETURL  = "http://medicine5iot.000webhostapp.com/get.php";
 
+//String POSTURL = "http://192.168.10.41/Medic/post.php";
+//String GETURL  = "http://192.168.10.41/Medic/get.php";
+
 WiFiClient client;
 HTTPClient http;
 int httpCode;
@@ -74,6 +77,7 @@ void setup() {
 
 void loop() {
   val = digitalRead(sensor);
+  condition_GET();
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print("-");
     connectWiFi();
@@ -86,7 +90,7 @@ void loop() {
   }
   condition_GET();
   condition_CHECK();
-  delay(500);
+  delay(1000 * 10);
 }
 
 // ConnectWiFi
@@ -242,6 +246,7 @@ void condition_CHECK() {
     condition_POST();
     k = 0;
   }
+
   if (time_get == bf_time && x == 0) {
       meal = 1;
       medic_send[0] = bf_medic[0];
@@ -270,11 +275,14 @@ void condition_CHECK() {
       medic_send[2] = bb_medic[2];
       medic_send[3] = bb_medic[3];
       condition_CHECK_send();
+  } else {
+    loop();
   }
 }
 
 // Condition in condition_CHECK
 void condition_CHECK_send() {
+  Serial.println(time_get);
   Serial.println("Time to medicine!");
   LINE.notify("ถึงเวลาที่กำหนดจ่ายยาแล้ว!");
   rotateservo();

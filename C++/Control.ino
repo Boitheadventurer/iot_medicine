@@ -272,9 +272,10 @@ void condition_CHECK_send() {
 // Condition grap after time_get == time_meal
 void condition_grap() {
   if (x == 1 && val == 0) {
+    Serial.println(k);
     delay(1000);
     k++;
-    if (k >= 60) {
+    if (k >= 900) {
       Serial.println("Take medicine failed!");
       status = "'failed'";
       LINE.notify("\nผู้ป่วย คุณ \n" + Fullname + "ไม่ได้รับยาในเวลาที่กำหนด!");

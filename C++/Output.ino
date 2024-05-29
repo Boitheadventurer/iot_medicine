@@ -7,8 +7,8 @@
 #include <Wire.h>
 
 /*2.4G*/
-const char* ssid = "SSID"; // Wi-Fi SSID
-const char* password = "PASSWORD"; // Wi-Fi password
+const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
+const char* password = "ctnphrae"; // Wi-Fi password
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
@@ -127,9 +127,9 @@ void setting() {
   tft.setTextSize(1);
   tft.setCursor(15, 9);
   tft.print("Setting " + Clect + " to..");
-  tft.setCursor(31, 35);
+  tft.setCursor(31, 45);
   tft.print("HH");
-  tft.setCursor(85, 35);
+  tft.setCursor(85, 45);
   tft.print("MM");
   tft.setCursor(47, 125);
   tft.print("Status");
@@ -290,14 +290,22 @@ void layout() {
   tft.drawFastHLine(1, 159, tft.width(), ST7735_WHITE);
 }
 
+//Text alert medicine
+void txt_stt_medic() {
+  tft.setTextColor(ST77XX_YELLOW);
+  tft.setTextSize(2);
+  tft.setCursor(13, 138);
+  tft.print("Database!");
+  delay(1000 * 15);
+}
+
 //TFT text from database
 void tft_text() {
+  String seen;
   tft.setTextSize(1);
   tft.setCursor(6, 5);
   tft.setTextColor(ST77XX_YELLOW);
   tft.print(Name);
-  tft.setCursor(15, 30);
-  tft.print("Next medicine is");
   tft.setCursor(47, 125);
   tft.print("Status");
   tft.setTextColor(ST77XX_GREEN);
@@ -306,28 +314,35 @@ void tft_text() {
   time_get >= BF && st_bf == 1 && st_bb == 0) {
     Clect = "BBF";
     txt_meal = BF;
+    seen = "Next medicine is";
   } else if (time_get <= LUN && st_lun == 1 || 
   time_get >= LUN && st_lun == 1 && st_bf == 0) {
     Clect = "LUN";
     txt_meal = LUN;
+    seen = "Next medicine is";
   } else if (time_get <= DN && st_dn == 1 || 
   time_get >= DN && st_dn == 1 && st_lun == 0) {
     Clect = "DNR";
     txt_meal = DN;
+    seen = "Next medicine is";
   } else if (time_get <= BB && st_bb == 1 || 
   time_get >= BB && st_bb == 1 && st_dn == 0) {
     Clect = "BED";
     txt_meal = BB;
-  } else if (UserID <= 0 || httpCode != 200 || txt_meal == "") { // Err database
-    Clect = "CON";
+    seen = "Next medicine is";
+  } else if (UserID <= 0 || httpCode != 200) { // Err database
+    Clect = httpCode;
     txt_meal = "";
+    seen = "HttpCode respones";
   } 
   else { // BF < BB < time_get
     Clect = "BBF";
     txt_meal = BF;
+    seen = "Next medicine is";
   }
 
-
+  tft.setCursor(15, 30);
+  tft.print(seen);
   tft.setTextSize(3);
   tft.setCursor(40, 50);
   tft.print(Clect);

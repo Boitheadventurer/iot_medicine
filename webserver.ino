@@ -19,6 +19,9 @@ AsyncWebServer server(80);
 const char* ssid = "CTN floor 2 teacher";
 const char* password = "ctnphrae";
 
+String SSID;
+String PASS;
+
 String PARAM_INPUT_1 = "input1";
 String PARAM_INPUT_2 = "input2";
 
@@ -50,9 +53,7 @@ void setup() {
     Serial.println("WiFi Failed!");
     return;
   }
-  Serial.println();
-  Serial.print("IP Address: ");
-  Serial.println(WiFi.localIP());
+  Serial.print("Locale WIFI : ");   Serial.println(WiFi.localIP());
 
   // Send web page with input fields to client
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
@@ -62,21 +63,19 @@ void setup() {
   // Send a GET request to <ESP_IP>/get?input1=<inputMessage>
   server.on("/get", HTTP_GET, [] (AsyncWebServerRequest *request) {
     String inputMessage;
-    String inputMessage1;
-    String inputMessage2;
     String inputParam;
     // GET value on <ESP_IP>
     if (request->hasParam(PARAM_INPUT_1) && request->hasParam(PARAM_INPUT_2)) {
-      inputMessage1 = request->getParam(PARAM_INPUT_1)->value();
-      inputMessage2 = request->getParam(PARAM_INPUT_2)->value();
+      SSID = request->getParam(PARAM_INPUT_1)->value();
+      PASS = request->getParam(PARAM_INPUT_2)->value();
       inputParam = PARAM_INPUT_1 + " " + PARAM_INPUT_2;
     }
     else {
       inputMessage = "No message sent";
       inputParam = "none";
     }
-    Serial.print("SSID = "); Serial.println(inputMessage1);
-    Serial.print("PASS = "); Serial.println(inputMessage2);
+    Serial.print("SSID = "); Serial.println(SSID);
+    Serial.print("PASS = "); Serial.println(PASS);
     request->send(200, "text/html", "HTTP GET request sent to your ESP on input field (" + inputParam + ") with value: " + inputMessage + "<br><a href=\"/\">Return to Home Page</a>");
   });
   server.onNotFound(notFound);
@@ -84,5 +83,20 @@ void setup() {
 }
 
 void loop() {
-  
+  if (SSID != "" && PASS != "") {
+    Serial.print("SSID = "); Serial.println(SSID);
+    Serial.print("PASS = "); Serial.println(PASS);
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(SSID, PASS);
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+    }
+    Serial.print("connected to : "); Serial.println(SSID);
+    Serial.print("IP address : "); Serial.println(WiFi.localIP());
+    for (int i = 1; i <= 100*100 ;i++) {
+      Serial.print("Success! "); Serial.println(i);
+      delay(1500 + i);
+    }
+  }
 }

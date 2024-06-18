@@ -308,9 +308,6 @@ void tft_text() {
   tft.print(Name);
   tft.setCursor(47, 125);
   tft.print("Status");
-  tft.setCursor(15, 30);
-  tft.print(seen);
-  tft.setTextColor(ST77XX_GREEN);
 
   if (time_get <= BF && st_bf == 1 || 
   time_get >= BF && st_bf == 1 && st_bb == 0) {
@@ -343,6 +340,9 @@ void tft_text() {
     seen = "Next medicine is";
   }
 
+  tft.setCursor(15, 30);
+  tft.print(seen);
+  tft.setTextColor(ST77XX_GREEN);
   tft.setTextSize(3);
   tft.setCursor(40, 50);
   tft.print(Clect);

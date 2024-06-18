@@ -97,9 +97,6 @@ void loop() {
   condition_GET_tft();
   layout();
   tft_text();
-  if (time_get == BF || time_get == LUN || time_get == DN || time_get == BB) {
-    txt_stt_medic();
-  }
   for (int h = 0; h <= 200; h++) {
     key = keypad.getKey();
     switch (key) {
@@ -288,15 +285,6 @@ void layout() {
   tft.drawFastHLine(1, 25, tft.width(), ST7735_WHITE); 
   tft.drawFastHLine(1, 120, tft.width(), ST7735_WHITE);
   tft.drawFastHLine(1, 159, tft.width(), ST7735_WHITE);
-}
-
-//Text alert medicine
-void txt_stt_medic() {
-  tft.setTextColor(ST77XX_YELLOW);
-  tft.setTextSize(2);
-  tft.setCursor(13, 138);
-  tft.print("Database!");
-  delay(1000 * 15);
 }
 
 //TFT text from database

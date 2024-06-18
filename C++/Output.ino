@@ -7,8 +7,8 @@
 #include <Wire.h>
 
 /*2.4G*/
-const char* ssid = "SSID"; // Wi-Fi SSID
-const char* password = "PASSWORD"; // Wi-Fi password
+const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
+const char* password = "ctnphrae"; // Wi-Fi password
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
@@ -308,6 +308,8 @@ void tft_text() {
   tft.print(Name);
   tft.setCursor(47, 125);
   tft.print("Status");
+  tft.setCursor(15, 30);
+  tft.print(seen);
   tft.setTextColor(ST77XX_GREEN);
 
   if (time_get <= BF && st_bf == 1 || 
@@ -341,8 +343,6 @@ void tft_text() {
     seen = "Next medicine is";
   }
 
-  tft.setCursor(15, 30);
-  tft.print(seen);
   tft.setTextSize(3);
   tft.setCursor(40, 50);
   tft.print(Clect);

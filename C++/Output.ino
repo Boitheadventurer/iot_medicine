@@ -318,15 +318,8 @@ void tft_text() {
     Clect = "BED";
     txt_meal = BB;
     seen = "Next medicine is";
-  } else if (UserID <= 0) { // Err database
+  } else if (UserID <= 0 || httpCode != 200) { // Err database
     while (UserID <= 0) {
-      condition_GET_tft();
-    }
-  } else if (httpCode != 200) {
-    Clect = httpCode;
-    txt_meal = "";
-    seen = "HttpCode respones";
-    while (httpCode != 200) {
       condition_GET_tft();
     }
   } else { // BF < BB < time_get

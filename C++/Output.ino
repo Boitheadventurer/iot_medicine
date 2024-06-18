@@ -7,8 +7,8 @@
 #include <Wire.h>
 
 /*2.4G*/
-const char* ssid = "CTN floor 2 teacher"; // Wi-Fi SSID
-const char* password = "ctnphrae"; // Wi-Fi password
+const char* ssid = "SSID"; // Wi-Fi SSID
+const char* password = "PASSWORD"; // Wi-Fi password
 
 // URL by file PHP (http://(IP4)/(folder)(file.php))
 
@@ -88,7 +88,7 @@ void loop() {
     Serial.print("-");
     delay(500);
   }
-  while (UserID <= 0 || httpCode != 200) {
+  while (UserID <= 0) {
     condition_GET_tft();
     Serial.print("=");
     delay(500);
@@ -97,6 +97,9 @@ void loop() {
   condition_GET_tft();
   layout();
   tft_text();
+  if (time_get == BF || time_get == LUN || time_get == DN || time_get == BB) {
+    txt_stt_medic();
+  }
   for (int h = 0; h <= 200; h++) {
     key = keypad.getKey();
     switch (key) {
@@ -161,7 +164,6 @@ void setting() {
 
 //ConnectWiFi
 void connectWiFi() {
-  tft.fillScreen(ST77XX_BLACK);
   WiFi.mode(WIFI_OFF);
   delay(1000);
   WiFi.mode(WIFI_STA);
@@ -257,7 +259,7 @@ void condition_POST_upd() {
   int httpCode = http.POST(updateData);
   String payload = http.getString();
   Serial.print("HTTP_UPD Response Code: "); Serial.println(httpCode);
-  Serial.print("UPDURL : ");  Serial.println(UPDURL); 
+  Serial.print("UPDURL : "); Serial.println(UPDURL); 
   Serial.print("Data: ");     Serial.println(updateData);
   Serial.print("payload : "); Serial.println(payload);              //Check data send
   if (httpCode == 200) {
@@ -288,6 +290,15 @@ void layout() {
   tft.drawFastHLine(1, 159, tft.width(), ST7735_WHITE);
 }
 
+//Text alert medicine
+void txt_stt_medic() {
+  tft.setTextColor(ST77XX_YELLOW);
+  tft.setTextSize(2);
+  tft.setCursor(13, 138);
+  tft.print("Database!");
+  delay(1000 * 15);
+}
+
 //TFT text from database
 void tft_text() {
   String seen;
@@ -297,6 +308,7 @@ void tft_text() {
   tft.print(Name);
   tft.setCursor(47, 125);
   tft.print("Status");
+  tft.setTextColor(ST77XX_GREEN);
 
   if (time_get <= BF && st_bf == 1 || 
   time_get >= BF && st_bf == 1 && st_bb == 0) {
@@ -319,10 +331,11 @@ void tft_text() {
     txt_meal = BB;
     seen = "Next medicine is";
   } else if (UserID <= 0 || httpCode != 200) { // Err database
-    while (UserID <= 0) {
-      condition_GET_tft();
-    }
-  } else { // BF < BB < time_get
+    Clect = httpCode;
+    txt_meal = "";
+    seen = "HttpCode respones";
+  } 
+  else { // BF < BB < time_get
     Clect = "BBF";
     txt_meal = BF;
     seen = "Next medicine is";
@@ -330,7 +343,6 @@ void tft_text() {
 
   tft.setCursor(15, 30);
   tft.print(seen);
-  tft.setTextColor(ST77XX_GREEN);
   tft.setTextSize(3);
   tft.setCursor(40, 50);
   tft.print(Clect);

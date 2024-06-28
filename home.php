@@ -52,6 +52,11 @@
                     margin: 5% 0;
                 }
             }
+            @media only screen and (max-width: 560px) {
+                .card {
+                    width: 100%;
+                }
+            }
         </style>
     </head>
     <body>

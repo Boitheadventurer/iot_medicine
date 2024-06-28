@@ -1,6 +1,7 @@
 # IOT_MEDICINE ESP8266
 
 ขาว-gnd , น้ำเงิน-vcc
+QIChSQJdNBnK08VtgMSjRPhikDUQVGP3ikBPexwgQFU
 
 https://notify-bot.line.me/en/
 

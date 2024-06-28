@@ -1,6 +1,5 @@
 <?php
 include 'conn.php';
-include 'chk_id.php';
 
 date_default_timezone_set("Asia/Bangkok");
 echo "\ntime=" . date("H:i");

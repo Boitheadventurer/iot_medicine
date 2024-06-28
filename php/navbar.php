@@ -1,35 +1,22 @@
-<style>
-    @media only screen and (max-width: 1000px){
-        .nn {
-            width: auto;
-            margin: 1% 12% 0 12%;
-        }
-        .logout {
-            margin-top: 1%;
-            display: block;
-        }
-    }
-</style>
-
 <!-- Nav bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<a class="navbar-brand mx-5" href="#"><?php echo $row['firstname'] . " " . $row['lastname']; ?></a>
+<a class="navbar-brand" href="#"><?php echo $row['firstname'] . " " . $row['lastname']; ?></a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 </button>   
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     <li class="nav-item nn">
-        <a class="nav-link mx-1 btn btn-info text-light" href="home.php"><i class="ri-home-4-line"></i> หน้าหลัก</a>
+        <a class="nav-link text-dark" href="home.php"><i class="ri-home-4-line"></i> หน้าหลัก</a>
     </li>
     <li class="nav-item nn">
-        <a class="nav-link mx-1 btn btn-info text-light" href="medicine.php"><i class="ri-capsule-fill"></i> ข้อมูลยา</a>
+        <a class="nav-link text-dark" href="medicine.php"><i class="ri-capsule-fill"></i> ข้อมูลยา</a>
     </li>
     <li class="nav-item nn">
-        <a class="nav-link mx-1 btn btn-info text-light" href="device.php"><i class="ri-hard-drive-2-line"></i> ข้อมูลเครื่อง</a>
+        <a class="nav-link text-dark" href="device.php"><i class="ri-hard-drive-2-line"></i> ข้อมูลเครื่อง</a>
     </li>
     <li class="nav-item dropdown nn">
-        <a class="nav-link dropdown-toggle mx-1 btn btn-info text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link  dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="ri-time-line"></i> กำหนดเวลา
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -78,7 +65,9 @@
 
         </div>
     </li>
+    <li class="nav-item nn">
+        <a href="php/logout.php" type="button" class="btn btn-danger"><i class="ri-logout-box-line"></i> ออกจากระบบ</a>
+    </li>
     </ul>
-    <a href="php/logout.php" type="button" class="mx-5 btn btn-danger logout nn"><i class="ri-logout-box-line"></i> ออกจากระบบ</a>
 </div>
 </nav>

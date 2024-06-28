@@ -55,6 +55,9 @@
             @media only screen and (max-width: 560px) {
                 .card {
                     width: 100%;
+                    margin: auto;
+                    align-items: center;
+                    text-align: center;
                 }
             }
         </style>
